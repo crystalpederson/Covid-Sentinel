@@ -7,6 +7,7 @@
     "build": "webpack",
     "build:server": "webpack serve --open",
     "build:dev": "npx webpack watch --mode development",
+    "build:css": "npx tailwindcss -i ./src/stylesheets/styles.css -o ./build/styles.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
