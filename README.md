@@ -17,3 +17,7 @@ Clone down this repository. You will need `git`, `node` and `npm` installed glob
 After this command you can open the project by opening or running on a live server the `index.html` file under the `build` folder.
 ### Run webpack dev server
 `npm run build:server`
+
+### Environment configuration
+`dotenv` library added to gitignore 
+`example.env` file added as template
