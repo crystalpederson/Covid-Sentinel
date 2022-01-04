@@ -18,6 +18,9 @@ After this command you can open the project by opening or running on a live serv
 ### Run webpack dev server
 `npm run build:server`
 
+### CSS Configuration
+`npm run build:css` This command reads the `tailwind.config.js` file and `styles.css` template file, transpiles the CSS and exports a `styles.css` file to the `build` folder.
+
 ### Environment configuration
 `dotenv` library added to gitignore 
 `example.env` file added as template
