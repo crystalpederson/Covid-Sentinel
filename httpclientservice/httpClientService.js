@@ -1,11 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
+require("dotenv").config();
 
-class ClientService {
-  constructor() {
+const apiKey = process.env.VACCOVID_API_KEY;
+
+const config = {
+  host: "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+  APIKey: apiKey,
+};
+
+class HttpClientApiService {
+  constructor({ host, APIkey }) {
     let service = axios.create({
-      headers: {}
+      headers: {
+        "x-rapidapi-host": host,
+        "x-rapidapi-key": APIkey,
+      },
     });
-    service.interceptors.response.use(this.handleSuccess, this.handleError);
+    // service.interceptors.response.use(this.handleSuccess, this.handleError);
     this.service = service;
   }
 
@@ -16,45 +27,27 @@ class ClientService {
   handleError = (error) => {
     switch (error.response.status) {
       case 401:
-        this.redirectTo(document, '/')
+        this.redirectTo(document, "/");
         break;
       case 404:
-        this.redirectTo(document, '/404')
+        this.redirectTo(document, "/404");
         break;
       default:
-        this.redirectTo(document, '/500')
+        this.redirectTo(document, "/500");
         break;
     }
-    return Promise.reject(error)
-  }
+    return Promise.reject(error);
+  };
 
   redirectTo = (document, path) => {
-    document.location = path
-  }
-  
+    document.location = path;
+  };
+
   get(path, callback) {
-    return this.service.get(path).then(
-      (response) => callback(response.status, response.data)
-    );
-  }
-
-  patch(path, payload, callback) {
-    return this.service.request({
-      method: 'PATCH',
-      url: path,
-      responseType: 'json',
-      data: payload
-    }).then((response) => callback(response.status, response.data));
-  }
-
-  post(path, payload, callback) {
-    return this.service.request({
-      method: 'POST',
-      url: path,
-      responseType: 'json',
-      data: payload
-    }).then((response) => callback(response.status, response.data));
+    return this.service
+      .get(path)
+      .then((response) => callback(response.status, response.data));
   }
 }
 
-export default new ClientService;
+export default new HttpClientApiService(config);
