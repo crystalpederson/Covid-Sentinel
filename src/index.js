@@ -5,10 +5,11 @@ import App from './components/App';
 import styles from './stylesheets/styles.css';
 
 
-ReactDOM.render(
+render(
     <BrowserRouter>
-      <App />
+        <App />
     </BrowserRouter>,
+    
     document.getElementById("root")
   );
 
