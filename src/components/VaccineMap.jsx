@@ -36,21 +36,24 @@ const VaccineMap = () => {
       .request(vaccinationOptions)
       .then((response) => response.data)
       .then((data) => {
+        console.log(data);
         const { country, people_vaccinated } = data[data.length-1];
         return { country, people_vaccinated };
       })
       .then((data) => {
         console.log(data);
+        // const cache = [['Country', 'People Vaccinated'], [data.country, +data.people_vaccinated]];
         const cache = [ [], [] ];
         for (const property in data) {
           const capitalizedString = `${property[0].toUpperCase()}${property.slice(1)}`;
           const formattedString = capitalizedString.replaceAll(/_/g, ' ');
           console.log(formattedString);
-          cache[0].push(capitalizedString);
-          cache[1].push(data[property]);
+          cache[0].push(formattedString);
+          const dataPoint = Number.isNaN(+data[property]) ? data[property] : +data[property];
+          cache[1].push(dataPoint);
         }
         // cache[1][1] = `${capitalizedString}: ${data[property]}`;
-        console.log(cache);
+        console.log('this is the cache', cache);
         setCountryData(cache);
       })
     //   .then((response) => {
@@ -70,7 +73,7 @@ const VaccineMap = () => {
 
   return (
     <div>
-      <h1>World Map</h1>
+      <h1>Vaccine Map</h1>
       <Chart 
         // chartEvents={[
         //   {
@@ -90,7 +93,6 @@ const VaccineMap = () => {
         data={countryData}
         options={options}
       />
-      <p>{countryData}</p>
     </div>
   );
 

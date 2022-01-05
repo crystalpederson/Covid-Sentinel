@@ -8,10 +8,8 @@ const App = () => {
   
   return (
     <>
-      <h1>Vaccine Map</h1>
-      <VaccineMap />
-      <h1>Covid Map</h1>
       <CovidMap />
+      <VaccineMap />
     </>
   );
 };

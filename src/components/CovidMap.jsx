@@ -16,7 +16,7 @@ const CovidMap = () => {
         return response.data;
       })
       .then((data) => {
-        const cache = data.map((obj) => [obj.Country, obj.TotalCases]);
+        const cache = data.map((el) => [el.Country, el.TotalCases]);
         console.log('this is the cache', cache);
         cache.unshift(['Country', 'TotalCases']);
         setCovidData(cache);
@@ -50,7 +50,7 @@ const CovidMap = () => {
   
   return (
     <div>
-      <h1>World Map</h1>
+      <h1>Covid Map</h1>
       <Chart 
         // chartEvents={[
         //   {
