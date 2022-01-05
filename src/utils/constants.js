@@ -15,7 +15,7 @@ const vaccinationOptions = {
 
 const covidOptions = {
   method: 'GET',
-  url: 'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/asia', //process.env.VACCOVID_API_ENDPOINT,
+  url: 'https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/asia', // example uses Asia only, need to update .env to include different endpoints
   headers: {
     'x-rapidapi-host': VACCOVID_API_HOST,
     'x-rapidapi-key': process.env.VACCOVID_API_KEY,

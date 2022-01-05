@@ -11,30 +11,13 @@ const CovidMap = () => {
       
     axios
       .request(covidOptions)
-      .then((response) => {
-        console.log('this is covid data', response);
-        return response.data;
-      })
+      .then((response) => response.data)
       .then((data) => {
         const cache = data.map((el) => [el.Country, el.TotalCases]);
-        console.log('this is the cache', cache);
-        cache.unshift(['Country', 'TotalCases']);
+        console.log('this is the mapped data', cache);
+        cache.unshift(['Country', 'Total Cases']);
         setCovidData(cache);
       })
-    //   .then((data) => {
-    //     console.log(data);
-    //     const cache = [ [], [] ];
-    //     for (const property in data) {
-    //       const capitalizedString = `${property[0].toUpperCase()}${property.slice(1)}`;
-    //       const formattedString = capitalizedString.replaceAll(/_/g, ' ');
-    //       console.log(formattedString);
-    //       cache[0].push(capitalizedString);
-    //       cache[1].push(data[property]);
-    //     }
-    //     // cache[1][1] = `${capitalizedString}: ${data[property]}`;
-    //     console.log(cache);
-    //     setCovidData(cache);
-    //   })
       .catch(function (error) {
         console.error(error);
       });
