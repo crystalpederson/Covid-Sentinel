@@ -5,11 +5,11 @@ import About from './About';
 
 function NavBar () {
   return (
-    <div className="container mx-auto">
+    <nav className="container mx-auto">
       <Map />
       <Countries />
       <About />
-    </div>
+    </nav>
   );
 }
 
