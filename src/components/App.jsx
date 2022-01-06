@@ -44,6 +44,7 @@ const App = () => {
         <Route path="/" element={<NavBar />}>
           <Route index element={<Homepage />} />
           <Route path="about" element={<About />} />
+          <Route path="map" element={<Map />} />
           <Route path="countries" element={<Countries />} />
         </Route>
       </Routes>

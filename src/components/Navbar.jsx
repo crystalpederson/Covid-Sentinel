@@ -1,36 +1,62 @@
 import React from 'react';
 import Map from './Map';
-import Countries from './Countries';
-import About from './About';
+
 import { Outlet, Link } from "react-router-dom";
 
-function NavBar () {
-  return (
-          <div>
-            {/* A "layout route" is a good place to put markup you want to
-                share across all the pages on your site, like navigation. */}
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/countries">Countries</Link>
-                </li>
-              </ul>
-            </nav>
+// function NavBar () {
+//   return (
+//           <nav>
+//             <div>
+//                 COVID SENTINEL
+//             </div>
+//             <nav>
+//               <ul>
+//                 <li>
+//                   <Link to="/">Home</Link>
+//                 </li>
+//                 <li>
+//                   <Link to="/about">About</Link>
+//                 </li>
+//                 <li>
+//                   <Link to="/countries">Countries</Link>
+//                 </li>
+//               </ul>
+//             </nav>
       
-            <hr />
+//             <hr />
       
-            {/* An <Outlet> renders whatever child route is currently active,
-                so you can think about this <Outlet> as a placeholder for
-                the child routes we defined above. */}
-            <Outlet />
-          </div>
-        );
-      }
+//             <Outlet />
+//           </nav>
+//         );
+//       }
+
+// const NavBar = ({ toggle }) => {
+//     return (
+//       <nav
+//         className='flex justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono'
+//         role='navigation'
+//       >
+//         <Link to='/' className='pl-8'>
+//           COOVID SENTINEL
+//         </Link>
+//         <div className='px-4 cursor-pointer md:hidden' onClick={toggle}>
+//         </div>
+//         <div className='pr-8 md:block  hidden'>
+//           <Link to='/' className='p-4'>
+//             Map
+//           </Link>
+//           {/* <Link to='/map' className='p-4'>
+//             Map
+//           </Link> */}
+//           <Link to='/countries' className='p-4'>
+//             Countries
+//           </Link>
+//           <Link to='/about' className='p-4'>
+//             About
+//           </Link>
+//         </div>
+//       </nav>
+//     );
+//   };
 
 export default NavBar;
