@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react/cjs/react.development';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { vaccinationOptions } from '../utils/constants';
+import Loader from './Spinner';
 
 const VaccineMap = () => {
   const [ countryData, setCountryData ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
   useEffect(() => {
     
     // {country: 'United States', iso_code: 'USA', date: '2021-11-09', total_vaccinations: '433156393.0', people_vaccinated: '224257467.0', …}
@@ -55,6 +57,7 @@ const VaccineMap = () => {
         // cache[1][1] = `${capitalizedString}: ${data[property]}`;
         console.log('this is the cache', cache);
         setCountryData(cache);
+        setLoading(false);
       })
     //   .then((response) => {
     //   })
@@ -74,6 +77,7 @@ const VaccineMap = () => {
   return (
     <div>
       <h1>Vaccine Map</h1>
+      {loading ? <Loader/> :
       <Chart 
         // chartEvents={[
         //   {
@@ -93,6 +97,7 @@ const VaccineMap = () => {
         data={countryData}
         options={options}
       />
+      }
     </div>
   );
 

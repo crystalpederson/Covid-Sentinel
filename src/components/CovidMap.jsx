@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react/cjs/react.development';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions } from '../utils/constants';
+import Loader from './Spinner';
 
 const CovidMap = () => {
   const [ covidData, setCovidData ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
       
@@ -25,6 +27,7 @@ const CovidMap = () => {
         console.log('this is the mapped data', cache);
         cache.unshift(['Country', 'Total Cases']);
         setCovidData(cache);
+        setLoading(false);
       })
       .catch(function (error) {
         console.error(error);
@@ -43,6 +46,7 @@ const CovidMap = () => {
   return (
     <div>
       <h1>Covid Map</h1>
+      { loading ? <Loader/> :
       <Chart 
         // chartEvents={[
         //   {
@@ -62,6 +66,7 @@ const CovidMap = () => {
         data={covidData}
         options={options}
       />
+      }
     </div>
   );
   
