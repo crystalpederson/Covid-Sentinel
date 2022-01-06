@@ -13,7 +13,15 @@ const CovidMap = () => {
       .request(covidOptions)
       .then((response) => response.data)
       .then((data) => {
-        const cache = data.map((el) => [el.Country, el.TotalCases]);
+        console.log(data);
+        const cache = data.map((el) => {
+          if (el.Country === 'UK') {
+            el.Country = 'United Kingdom';
+          } else if ( el.Country === 'USA') {
+            el.Country = 'United States';
+          }
+          return [ el.Country, el.TotalCases];
+        });
         console.log('this is the mapped data', cache);
         cache.unshift(['Country', 'Total Cases']);
         setCovidData(cache);
@@ -26,8 +34,9 @@ const CovidMap = () => {
   const options = {
     // region: '142', // Asia
     // displayMode: 'text',
-    legendToggle: true,
-    title: 'World Map',
+    // legendToggle: true,
+    // title: 'World Map',
+    colorAxis: { colors: ["green", "black", "red"] }
   };
       
   

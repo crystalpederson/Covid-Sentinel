@@ -66,8 +66,8 @@ const VaccineMap = () => {
   const options = {
     // region: '021', // USA
     // displayMode: 'text',
-    legendToggle: true,
-    title: 'USA',
+    // legendToggle: true,
+    // title: 'USA',
   };
     
 
