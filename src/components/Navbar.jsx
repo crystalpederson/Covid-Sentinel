@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
-function NavBar () {
+function NavBar() {
   return (
-    <nav>
-      <div>
-          COVID SENTINEL
-      </div>
+    <div>
+      <div>COVID SENTINEL</div>
       <nav>
         <ul>
           <li>
@@ -22,9 +20,8 @@ function NavBar () {
         </ul>
       </nav>
 
-      <hr />
-
-    </nav>
+      <Outlet />
+    </div>
   );
 }
 
