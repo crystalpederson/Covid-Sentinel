@@ -4,6 +4,7 @@ import NavBar from './Navbar';
 import Homepage from './Homepage';
 import Countries from './Countries';
 import About from './About';
+import Map from './Map';
 
 import { useEffect } from 'react/cjs/react.development';
 import axios from 'axios';
