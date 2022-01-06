@@ -2,7 +2,6 @@
   "name": "covid-sentinel",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "webpack",
     "build:server": "webpack serve --open",

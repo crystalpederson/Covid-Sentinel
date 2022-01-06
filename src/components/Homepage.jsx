@@ -1,6 +1,6 @@
 import React from 'react';
-import { Routes, Route, Link } from "react-router-dom";
-import Map from './Map'
+import { Routes, Route, Link } from 'react-router-dom';
+import Map from './Map';
 
 function Homepage() {
   return (

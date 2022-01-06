@@ -1,7 +1,6 @@
 import React from 'react';
-import Map from './Map';
 
-import { Outlet, Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function NavBar () {
   return (
@@ -25,7 +24,6 @@ function NavBar () {
 
       <hr />
 
-      <Outlet />
     </nav>
   );
 }

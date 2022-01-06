@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from 'react-router-dom';
 import NavBar from './Navbar';
 import Homepage from './Homepage';
 import Countries from './Countries';
@@ -8,7 +8,6 @@ import Map from './Map';
 
 import { useEffect } from 'react/cjs/react.development';
 import axios from 'axios';
-// import env from "react-dotenv";
 
 const App = () => {
   useEffect(() => {
@@ -38,20 +37,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <div className="main">
-        {/* Define all the routes */}
-        <Routes>
-        <Route path="/" element={<NavBar />}>
-          <Route index element={<Homepage />} />
-          <Route path="about" element={<About />} />
-          <Route path="map" element={<Map />} />
-          <Route path="countries" element={<Countries />} />
-        </Route>
-      </Routes>
+    <div>
+      <div>
+        <NavBar />
+        Hello World!
       </div>
     </div>
-  )
+  );
 };
 
 export default App;
