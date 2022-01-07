@@ -1,8 +1,7 @@
 const VACCOVID_API_HOST =
-          'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com';
-const VACCINATION_API_HOST =
-          'covid-19-world-vaccination-data.p.rapidapi.com';
-    
+  'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com';
+const VACCINATION_API_HOST = 'covid-19-world-vaccination-data.p.rapidapi.com';
+
 const vaccinationOptions = {
   method: 'GET',
   url: process.env.VACCINATION_API_ENDPOINT,
@@ -22,4 +21,21 @@ const covidOptions = {
   },
 };
 
-export { VACCOVID_API_HOST, VACCINATION_API_HOST, vaccinationOptions, covidOptions };
+const countryCodeToName = {
+  UK: 'United Kingdom',
+  USA: 'United States',
+};
+
+const countryNameToCode = {
+  'United Kingdom': 'UK',
+  'United States': 'USA',
+};
+
+export {
+  VACCOVID_API_HOST,
+  VACCINATION_API_HOST,
+  vaccinationOptions,
+  covidOptions,
+  countryCodeToName,
+  countryNameToCode,
+};
