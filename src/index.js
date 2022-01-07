@@ -11,14 +11,9 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-<<<<<<< HEAD
-        <Route path="" element={<Homepage />} />
-        <Route path="home" element={<Homepage />} />
-=======
         <Route path="" element={<CovidMap />} />
         <Route path="home" element={<CovidMap />} />
         <Route path="country" element={<VaccineMap />} />
->>>>>>> create-map-component
         <Route path="about" element={<About />} />
       </Route>
     </Routes>

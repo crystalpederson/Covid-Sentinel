@@ -3,7 +3,6 @@ import { Link, Outlet } from 'react-router-dom';
 
 function NavBar() {
   return (
-<<<<<<< HEAD
     <>
     <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
   <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -22,27 +21,9 @@ function NavBar() {
       <Link to="/about" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-green-300 mr-4">
       About
       </Link>
-      <Link to="/countries" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-green-300 mr-4">
+      <Link to="/country" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-green-300 mr-4">
       Countries
       </Link>
-=======
-    <div>
-      <div>COVID SENTINEL</div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/country">Country</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
-      <Outlet />
->>>>>>> create-map-component
     </div>
   </div>
 
