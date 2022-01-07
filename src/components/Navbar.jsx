@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <div className="flex flex-row mx-auto h-full bg-sky-500 py-50 px-50">
+    <div className="container w-full flex flex-row mx-auto h-full bg-sky-500 py-50 px-50">
       <div className="basis-1/4 text-lg font-bold">
           COVID SENTINEL
       </div>
