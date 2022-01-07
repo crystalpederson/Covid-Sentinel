@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/XCodeStack/Covid-Sentinel#readme",
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "dotenv": "^10.0.0",
     "axios": "^0.24.0",
     "dotenv-webpack": "^7.0.3",
     "react": "^17.0.2",

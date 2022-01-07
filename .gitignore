@@ -105,3 +105,6 @@ dist
 
 # Webpack Build Folder
 build
+
+.DS_Store
+src/.DS_Store
