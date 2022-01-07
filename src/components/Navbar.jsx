@@ -12,14 +12,13 @@ function NavBar() {
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/country">Country</Link>
           </li>
           <li>
-            <Link to="/countries">Countries</Link>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </nav>
-
       <Outlet />
     </div>
   );
