@@ -1,7 +1,5 @@
 import React from 'react';
 import NavBar from './Navbar';
-import CovidMap from './CovidMap';
-import Loader from './Spinner';
 
 const App = () => {
   return (
