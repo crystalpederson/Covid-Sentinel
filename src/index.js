@@ -12,6 +12,7 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}/>
+        <Route path="" element={<Map />}/>
         <Route path="about" element={<About />} />
         <Route path="map" element={<Map />} />
         <Route path="countries" element={<Countries />} />

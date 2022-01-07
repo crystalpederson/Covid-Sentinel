@@ -34,14 +34,13 @@ const App = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, []); 
 
   return (
     <div>
-      <div>
-        <NavBar />
-        Hello World!
-      </div>
+
+      <NavBar />
+
     </div>
   );
 };
