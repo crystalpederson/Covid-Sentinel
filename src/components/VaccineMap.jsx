@@ -4,10 +4,16 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { vaccinationOptions } from '../utils/constants';
 import Loader from './Spinner';
+import { useLocation } from 'react-router';
+import object from '../utils/isoCodes';
 
-const VaccineMap = () => {
+const VaccineMap = (props) => {
   const [ countryData, setCountryData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
+  const { state : { Country } } = useLocation();
+  console.log(object[Country]);
+  vaccinationOptions.params['iso'] = object[Country];
+
   useEffect(() => {
     
     // {country: 'United States', iso_code: 'USA', date: '2021-11-09', total_vaccinations: '433156393.0', people_vaccinated: '224257467.0', …}
@@ -39,8 +45,8 @@ const VaccineMap = () => {
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
-        const { country, people_vaccinated } = data[data.length-1];
-        return { country, people_vaccinated };
+        const { country, total_vaccinations } = data[data.length-1];
+        return { country, total_vaccinations };
       })
       .then((data) => {
         console.log(data);
@@ -67,7 +73,7 @@ const VaccineMap = () => {
   }, []);
 
   const options = {
-    // region: '021', // USA
+    // region: '151', // Russia
     // displayMode: 'text',
     // legendToggle: true,
     // title: 'USA',
