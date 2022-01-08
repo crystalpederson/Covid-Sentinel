@@ -4,11 +4,12 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -48,17 +49,12 @@ const CovidMap = () => {
               callback: ({ chartWrapper }) => {
                 const chart = chartWrapper.getChart();
                 const selection = chart.getSelection();
-                console.log(selection);
+                // console.log(selection);
                 if (selection.length === 0) return;
                 const region = covidData[selection[0].row + 1];
-                console.log(region);
-                console.log('Selected : ' + region[0]);
-                <Redirect 
-                  to={{
-                    pathname: '/country',
-                    state: {Country: region[0]}
-                  }} 
-                />;
+                // console.log(region);
+                // console.log('Selected : ' + region[0]);
+                navigate('/country', {state: { Country: region[0] }});
               },
             },
           ]}

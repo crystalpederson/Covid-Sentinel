@@ -31,6 +31,7 @@ const countryNameToCode = {
   'United States': 'USA',
 };
 
+
 export {
   VACCOVID_API_HOST,
   VACCINATION_API_HOST,
