@@ -884,7 +884,5 @@ const isoCodes = [
 const object = isoCodes.reduce(
   (obj, item) => Object.assign(obj, { [item.Country]: item.ThreeLetterSymbol.toUpperCase() }), {});
 
-console.log(object);
-
 export default object;
   
