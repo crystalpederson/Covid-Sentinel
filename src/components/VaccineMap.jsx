@@ -10,9 +10,15 @@ import object from '../utils/isoCodes';
 const VaccineMap = (props) => {
   const [ countryData, setCountryData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
-  const { state : { Country } } = useLocation();
-  console.log(object[Country]);
-  vaccinationOptions.params['iso'] = object[Country];
+  // const { state : { Country } } = useLocation();
+  const { state } = useLocation();
+  if (!state) {
+    console.log('this does not exist')
+    vaccinationOptions.params['iso'] = 'USA';
+  } else {
+    const { Country } = state;
+    vaccinationOptions.params['iso'] = object[Country];
+  }
 
   useEffect(() => {
     
