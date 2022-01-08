@@ -13,7 +13,7 @@ render(
       <Route path="/" element={<App />}>
         <Route path="" element={<CovidMap />} />
         <Route path="home" element={<CovidMap />} />
-        <Route path="country" element={<VaccineMap />} />
+        <Route path="country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>}/>
         <Route path="about" element={<About />} />
       </Route>
     </Routes>

@@ -4,6 +4,7 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
+import { Link, Redirect } from 'react-router-dom';
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
@@ -39,29 +40,35 @@ const CovidMap = () => {
   return (
     <div>
       <h1>Covid Map</h1>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Chart
-          // chartEvents={[
-          //   {
-          //     eventName: "select",
-          //     callback: ({ chartWrapper }) => {
-          //       const chart = chartWrapper.getChart();
-          //       const selection = chart.getSelection();
-          //       if (selection.length === 0) return;
-          //       const region = data[selection[0].row + 1];
-          //       console.log("Selected : " + region);
-          //     },
-          //   },
-          // ]}
+      { loading ? <Loader/> :
+        <Chart 
+          chartEvents={[
+            {
+              eventName: 'select',
+              callback: ({ chartWrapper }) => {
+                const chart = chartWrapper.getChart();
+                const selection = chart.getSelection();
+                console.log(selection);
+                if (selection.length === 0) return;
+                const region = covidData[selection[0].row + 1];
+                console.log(region);
+                console.log('Selected : ' + region[0]);
+                <Redirect 
+                  to={{
+                    pathname: '/country',
+                    state: {Country: region[0]}
+                  }} 
+                />;
+              },
+            },
+          ]}
           chartType="GeoChart"
           width="100%"
           height="400px"
           data={covidData}
           options={options}
         />
-      )}
+      }
     </div>
   );
 };

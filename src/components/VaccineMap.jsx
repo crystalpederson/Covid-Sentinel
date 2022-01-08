@@ -5,7 +5,7 @@ import axios from 'axios';
 import { vaccinationOptions } from '../utils/constants';
 import Loader from './Spinner';
 
-const VaccineMap = () => {
+const VaccineMap = ({props}) => {
   const [ countryData, setCountryData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
   useEffect(() => {
