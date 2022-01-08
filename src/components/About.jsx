@@ -1,18 +1,18 @@
 import React from 'react';
+import AboutUs from './AboutUs';
+import Founders from './Founders';
 
-function About () {
+const About = () => {
   return (
-    <div className="container mx-auto">
-      <h1 className="text-blue-900 font-bold">Created by:</h1>
-      <ul>
-        <li>Alex Gurfinkel</li>
-        <li>Andrés Gutiérrez</li>
-        <li>Michael Chan</li>
-        <li>TX Ho</li>
-        <li>Vince Chin</li>
-      </ul>
+    <div className='mt-10 ml-24 flex flex-col min-h-screen'>
+      <div>
+        <AboutUs />
+      </div>
+      <div>
+        <Founders />
+      </div>
     </div>
   );
-}
+};
 
 export default About;
