@@ -6,11 +6,12 @@ import { vaccinationOptions } from '../utils/constants';
 const options = {
   allowHtml: true,
   showRowNumber: true,
+  firstRowNumber: 0,
+  backgroundColor: '#E4E4E4',
 };
 
 const formatters = [
   {
-    // type: "PatternFormat" as const,
     column: [0, 1],
     options: '<a href="mailto:{1}">{0}</a>',
   },
@@ -27,14 +28,12 @@ const Table = ({iso}) => {
       .then((response) => response.data)
       .then((data) => data[data.length-1])
       .then((data) => {
-        console.log('this is the data', data);
-        const cache = [['Column 1', 'Column 2']];
+        const cache = [['','']];
         for (const property in data) {
           const capitalizedString = `${property[0].toUpperCase()}${property.slice(1)}`;
           const formattedString = capitalizedString.replaceAll(/_/g, ' ');
           cache.push([formattedString, data[property]]);
         }
-        console.log('this is the cache', cache);
         setCovidData(cache);
       })
       .catch(function (error) {

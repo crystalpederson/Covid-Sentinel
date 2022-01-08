@@ -50,10 +50,6 @@ const VaccineMap = () => {
   }, []);
 
   const options = {
-    // region: '151', // Russia
-    // displayMode: 'text',
-    // legendToggle: true,
-    // title: 'USA',
   };
     
 
@@ -64,7 +60,7 @@ const VaccineMap = () => {
         <Chart 
           chartType="GeoChart"
           width="100%"
-          height="400px"
+          height="60vh"
           data={countryData}
           options={options}
         />
