@@ -6,23 +6,26 @@ import { vaccinationOptions } from '../utils/constants';
 import Loader from './Spinner';
 import { useLocation } from 'react-router';
 import object from '../utils/isoCodes';
+import Table from './Table';
 
-const VaccineMap = (props) => {
+const VaccineMap = () => {
   const [ countryData, setCountryData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
-  // const { state : { Country } } = useLocation();
   const { state } = useLocation();
+  let iso;
   if (!state) {
-    console.log('this does not exist')
+    console.log('this does not exist');
     vaccinationOptions.params['iso'] = 'USA';
+    iso = 'USA';
   } else {
     const { Country } = state;
     vaccinationOptions.params['iso'] = object[Country];
+    iso = object[Country];
   }
 
   useEffect(() => {
     
-    // {country: 'United States', iso_code: 'USA', date: '2021-11-09', total_vaccinations: '433156393.0', people_vaccinated: '224257467.0', …}
+    // {country: 'United States', iso_code: 'USA', date: '2021-11-09', total_vaccinations: '433156393.0', people_vaccinated: '224257467.0',…}
     // console.log(response.data[response.data.length-1]);
     //     // response[response.length - 1];
     //     // const { total_vaccinations, people_vaccinated }
@@ -90,7 +93,7 @@ const VaccineMap = (props) => {
     <div>
       <h1>Vaccine Map</h1>
       {loading ? <Loader/> :
-      <Chart 
+        <Chart 
         // chartEvents={[
         //   {
         //     eventName: "select",
@@ -103,12 +106,16 @@ const VaccineMap = (props) => {
         //     },
         //   },
         // ]}
-        chartType="GeoChart"
-        width="100%"
-        height="400px"
-        data={countryData}
-        options={options}
-      />
+          chartType="GeoChart"
+          width="100%"
+          height="400px"
+          data={countryData}
+          options={options}
+        />
+      // <div><Table iso={iso}/></div>
+      }
+      {loading ? <Loader/> : 
+        <Table iso={iso}/>
       }
     </div>
   );
