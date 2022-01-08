@@ -27,7 +27,6 @@ const VaccineMap = () => {
       .request(vaccinationOptions)
       .then((response) => response.data)
       .then((data) => {
-        console.log(data);
         const { country, total_vaccinations } = data[data.length-1];
         return { country, total_vaccinations };
       })
@@ -36,7 +35,6 @@ const VaccineMap = () => {
         for (const property in data) {
           const capitalizedString = `${property[0].toUpperCase()}${property.slice(1)}`;
           const formattedString = capitalizedString.replaceAll(/_/g, ' ');
-          console.log(formattedString);
           cache[0].push(formattedString);
           const dataPoint = Number.isNaN(+data[property]) ? data[property] : +data[property];
           cache[1].push(dataPoint);

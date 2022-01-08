@@ -16,11 +16,9 @@ const CovidMap = () => {
       .request(covidOptions)
       .then((response) => response.data)
       .then((data) => {
-        console.log(data);
         const cache = data.map((el) => {
           return [countryCodeToName[el.Country] || el.Country, el.TotalCases];
         });
-        console.log('this is the mapped data', cache);
         cache.unshift(['Country', 'Total Cases']);
         setCovidData(cache);
         setLoading(false);
