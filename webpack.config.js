@@ -3,20 +3,24 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 
+const mode = process.env.NODE_ENV;
+
 module.exports = {
+  mode,
   entry: path.join(__dirname, "src/index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
+    publicPath: "/",
     filename: "bundle.js",
   },
 
-  devtool: "inline-source-map",
-  mode: "development",
+  //devtool: 'inline-source-map',
+  //mode: 'development',
 
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
@@ -48,12 +52,13 @@ module.exports = {
 
   devServer: {
     static: {
-      publicPath: "/build",
+      publicPath: "/",
+      directory: path.join(__dirname, "build"),
     },
-    //historyApiFallback allows the react router to render specific pages without going server-side
-    //essentially we can refresh or go forward/back from non-root domain pages and allow the react-router
-    //to render client-side
     historyApiFallback: true,
-    proxy: {},
+    hot: true,
+    proxy: {
+      "/api": "http://localhost:3000",
+    },
   },
 };
