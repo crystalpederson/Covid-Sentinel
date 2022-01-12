@@ -10,9 +10,8 @@ import Styles from "./stylesheets/styles.css";
 render(
   <BrowserRouter>
     <Routes>
-      {/* might look into consolidating these routes so they make more sense */}
       <Route path="/" element={<App />}>
-        <Route path="" element={<CovidMap />} />
+        <Route path="/" element={<CovidMap />} />
         <Route path="home" element={<CovidMap />} />
         <Route
           path="country"
