@@ -1,4 +1,5 @@
 import React from 'react';
+// Where does is import point to? Importing useEffect and useState directly from react doesn't break anything
 import { useEffect, useState } from 'react/cjs/react.development';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
