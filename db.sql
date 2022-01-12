@@ -9,7 +9,7 @@ CREATE TABLE public.users (
 
 CREATE TABLE public.favorites (
    	"_id" serial NOT NULL,
-    "country_name" varchar NOT NUll,
+    "country_name" varchar NOT NULL,
     "user_id" bigint,
     PRIMARY KEY ("_id") 
 );
