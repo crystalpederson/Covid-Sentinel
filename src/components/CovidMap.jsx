@@ -11,8 +11,15 @@ import { Link, useNavigate } from 'react-router-dom';
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [apiKey, setApiKey] = useState('');
   const navigate = useNavigate();
   
+  useEffect(() => {
+    axios.get('/keys').then((res) => {
+      setApiKey(res.data.key);
+    });
+  }, []);
+
   useEffect(() => {
     axios
       .request(covidOptions)
@@ -57,7 +64,7 @@ const CovidMap = () => {
           height="60vh"
           data={covidData}
           options={options}
-          mapsApiKey='AIzaSyDR7USipEdGyGlmd0ttJVMgEvrgbkFKTKU'
+          mapsApiKey={apiKey}
         />
       }
 
