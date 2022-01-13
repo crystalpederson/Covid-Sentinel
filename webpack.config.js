@@ -14,7 +14,7 @@ module.exports = {
     filename: 'bundle.js',
   },
 
-  //devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
   //mode: 'development',
 
 

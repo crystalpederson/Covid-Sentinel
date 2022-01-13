@@ -19,6 +19,7 @@ const db = require('../models/userModel');
 const userController = {};
 // require database and model
 
+
 userController.signup = async (req, res, next) => {
   // add query text
   // add conditional statement to check that user inserted all fields
@@ -28,7 +29,6 @@ userController.signup = async (req, res, next) => {
     !req.body.last_name ||
     !req.body.email ||
     !req.body.password
-
   ) {
     console.log('Incomplete signup fields');
     return next();
@@ -45,6 +45,7 @@ userController.signup = async (req, res, next) => {
         last_name,
         email,
         password,
+  
       ];
 
       const text =
@@ -52,7 +53,7 @@ userController.signup = async (req, res, next) => {
 
       db.query(text, params)
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           res.locals.user = data.rows[0];
           return next();
         })
