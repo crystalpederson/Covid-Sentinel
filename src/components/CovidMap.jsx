@@ -6,11 +6,13 @@ import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 
+
+
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     axios
       .request(covidOptions)
