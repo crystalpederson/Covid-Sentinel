@@ -6,10 +6,19 @@ import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 
+
+
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [apiKey, setApiKey] = useState('');
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    axios.get('/keys').then((res) => {
+      setApiKey(res.data.key);
+    });
+  }, []);
 
   useEffect(() => {
     axios
@@ -29,7 +38,8 @@ const CovidMap = () => {
   }, []);
 
   const options = {
-    colorAxis: { colors: ['green', 'black', 'red'] },
+    colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'] },
+    backgroundColor: '#FCF8F3' 
   };
 
   return (
@@ -54,8 +64,10 @@ const CovidMap = () => {
           height="60vh"
           data={covidData}
           options={options}
+          mapsApiKey={apiKey}
         />
       }
+
     </div>
   );
 };
