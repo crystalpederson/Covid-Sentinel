@@ -29,7 +29,8 @@ const CovidMap = () => {
   }, []);
 
   const options = {
-    colorAxis: { colors: ['green', 'black', 'red'] },
+    colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'] },
+    backgroundColor: '#FCF8F3' 
   };
 
   return (
@@ -54,8 +55,10 @@ const CovidMap = () => {
           height="60vh"
           data={covidData}
           options={options}
+          mapsApiKey='AIzaSyDR7USipEdGyGlmd0ttJVMgEvrgbkFKTKU'
         />
       }
+
     </div>
   );
 };
