@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 function NavBar() {
   return (
     <>
-      <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
+      {/* <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
         <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
           <div class="w-1/2 pl-2 md:pl-0">
             <a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold" href="#">
@@ -42,10 +42,10 @@ function NavBar() {
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> */}
 
 
-      {/* <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+      <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <span className="font-semibold text-xl tracking-tight">COVID SENTINEL</span>
         </div>
@@ -68,7 +68,7 @@ function NavBar() {
           </div>
         </div>
         <hr />
-      </nav> */}
+      </nav>
       {/* <Outlet /> */}
     </>
   );
