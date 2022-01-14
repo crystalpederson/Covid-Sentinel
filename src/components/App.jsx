@@ -3,6 +3,7 @@ import NavBar from './Navbar';
 import Footer from './Footer';
 import Signup from './Signup';
 import Login from './Login';
+import { Outlet } from 'react-router-dom';
 
 
 const App = () => {
@@ -10,8 +11,8 @@ const App = () => {
     <div>
       <div>
         <NavBar />
-        <Signup />
-        <Login />
+        {/* <Signup />
+        <Login /> */}
       </div>
       <Outlet />
       <footer>
