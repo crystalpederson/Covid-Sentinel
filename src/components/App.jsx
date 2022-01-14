@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBar from './Navbar';
 import Footer from './Footer';
+import Signup from './Signup';
+import Login from './Login';
 
 
 const App = () => {
@@ -8,10 +10,14 @@ const App = () => {
     <div>
       <div>
         <NavBar />
+        <Signup />
+        <Login />
       </div>
+      <Outlet />
       <footer>
         <Footer />
       </footer>
+      
     </div>
   );
 };
