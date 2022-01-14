@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const apiRouter = require('./routes/api');
+const keysRouter = require('./routes/keys');
 
 
 app.use(cors());
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/api', apiRouter);
+app.use('/keys', keysRouter);
 
 app.use((req, res) => res.sendStatus(404));
 
