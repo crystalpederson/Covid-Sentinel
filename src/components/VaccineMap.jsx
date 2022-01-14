@@ -48,6 +48,7 @@ const VaccineMap = () => {
   }, []);
 
   const options = {
+    colorAxis: { colors: ['#AEDADD'] }
   };
     
 
