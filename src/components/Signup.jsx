@@ -1,5 +1,4 @@
-import React from 'react';
-import react, { useState } from 'react';
+import React, { useState } from 'react';
 
 const Signup = () => {
 // console.log("test")
@@ -15,9 +14,9 @@ const Signup = () => {
 
   const handleChange = event => {
 
-    setState({...state, [event.target.name]: event.target.value })
+    setState({...state, [event.target.name]: event.target.value });
 
-  }
+  };
 
 
 
@@ -26,11 +25,11 @@ const Signup = () => {
 
     // this is going to send everything to the database
     // find out what post headers and things are needed in order to send to the database
-    console.log(state)
+    console.log(state);
 
 
 
-  }
+  };
   return (
     <div>
      
@@ -59,6 +58,6 @@ const Signup = () => {
       
     </div>
     
-  )
+  );
 };
 export default Signup;
