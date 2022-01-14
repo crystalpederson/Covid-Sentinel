@@ -4,33 +4,33 @@ import react, { useState } from 'react';
 const Signup = () => {
 // console.log("test")
 
-const[state, setState] = useState({
-  firstName: '',
-  lastName: '',
-  email: '',
-  password1: '',
-  password2: ''
-});
+  const[state, setState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password1: '',
+    password2: ''
+  });
 
 
-const handleChange = event => {
+  const handleChange = event => {
 
-  setState({...state, [event.target.name]: event.target.value })
+    setState({...state, [event.target.name]: event.target.value })
 
-}
+  }
 
 
 
-const handleSubmit = event => {
+  const handleSubmit = event => {
   // console.log("test", pass2)
 
-  // this is going to send everything to the database
+    // this is going to send everything to the database
     // find out what post headers and things are needed in order to send to the database
-console.log(state)
+    console.log(state)
 
 
 
-}
+  }
   return (
     <div>
      
