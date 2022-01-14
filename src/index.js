@@ -8,6 +8,7 @@ import CovidMap from './components/CovidMap';
 import Styles from './stylesheets/styles.css';
 
 render(
+  <React.StrictMode>
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
@@ -17,7 +18,8 @@ render(
         <Route path="about" element={<About />} />
       </Route>
     </Routes>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </React.StrictMode>,
 
   document.getElementById('root')
 );

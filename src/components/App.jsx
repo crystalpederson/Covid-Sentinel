@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './Navbar';
 import Footer from './Footer';
 import Signup from './Signup';
+import Login from './Login';
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <div>
         <NavBar />
         <Signup />
+        <Login />
       </div>
       <footer>
         <Footer />
