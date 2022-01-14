@@ -1,9 +1,15 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+<<<<<<< HEAD
 const dotenv = require('dotenv');
 dotenv.config();
 
+=======
+
+const dotenv = require('dotenv');
+dotenv.config();
+>>>>>>> dev
 
 const app = express();
 const PORT = process.env.PORT || 3000;

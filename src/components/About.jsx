@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutUs from './AboutUs';
 import Founders from './Founders';
+import Signup from './Signup';
 
 const About = () => {
   return (
@@ -11,6 +12,7 @@ const About = () => {
       <div>
         <Founders />
       </div>
+      <Signup />
     </div>
   );
 };

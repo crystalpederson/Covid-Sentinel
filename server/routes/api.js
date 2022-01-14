@@ -2,7 +2,20 @@ const express = require('express');
 const userController = require('../controllers/userController');
 
 const router = express.Router();
+<<<<<<< HEAD
 const { signup, login } = userController;
+=======
+const { login } = userController;
+
+router.post('/login', login, (req, res)=>{
+  return res.status(200).json({isMatch: res.locals.isMatch});
+}); 
+
+router.get('/users',
+  userController.getAllUsers,
+  (req, res) => res.status(200).json(res.locals.users)
+);
+>>>>>>> dev
 
 router.post('/signup', signup, (req, res) => {
   // steps: signup middleare to add user data to database, session middleware, cookie middleware to set a cookie
