@@ -10,8 +10,7 @@ const Login = () => {
 const[state, setState] = useState({
     email: '',
     password: ''
-   
-  });
+});
     
 const handleChange = event => {
   
@@ -21,13 +20,12 @@ const handleChange = event => {
 
 
 const handleSubmit = event => {
-  console.log(state)
 
 // send data to the database
+const data = state
 
-axios.post('/api/login', { state })
+axios.post('/api/login', data)
   .then(res =>{
- console.log(res)
  console.log(res.data);
   })
   .catch( err =>{
