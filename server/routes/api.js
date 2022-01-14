@@ -2,7 +2,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 
 const router = express.Router();
-const { login } = userController;
+const { signup, login } = userController;
 
 router.post('/login', login, (req, res)=>{
   return res.status(200).json({isMatch: res.locals.isMatch});
@@ -16,6 +16,7 @@ router.get('/users',
 router.post('/signup', signup, (req, res) => {
   // steps: signup middleare to add user data to database, session middleware, cookie middleware to set a cookie
   // inputs: first_name, last_name, email, password
+  console.log(req.body);
   res.status(200).send('Account successfully created');
 });
   
