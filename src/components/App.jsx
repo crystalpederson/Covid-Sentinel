@@ -37,7 +37,8 @@ const App = () => {
     <div>
       <NavBar/>
     <Routes >
-      <Route path="/home" element={<CovidMap />}></Route> 
+    <Route path="/" element={<CovidMap />}></Route> 
+      {/* <Route path="/home" element={<CovidMap />}></Route>  */}
       <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
       <Route path="/about" element={<About />}> </Route> 
     </Routes>
