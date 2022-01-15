@@ -4,11 +4,8 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
-import { Link, useNavigate } from 'react-router-dom';
 import Table from './Table';
-import VaccineMap from './VaccineMap'
-
-
+import Modal from 'react-modal';
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
@@ -16,9 +13,7 @@ const CovidMap = () => {
   const [apiKey, setApiKey] = useState('');
   const [iso, setIso] = useState('');
   const [allData, setAllData] = useState({});
-  const [countryClicked, setCountryClicked] = useState(false);
-
-  const navigate = useNavigate();
+  const [modalIsOpen, setIsOpen] = useState(false);
   
   useEffect(() => {
     axios.get('/keys').then((res) => {
@@ -48,6 +43,14 @@ const CovidMap = () => {
       });
   }, []);
 
+  const openModal = () =>{
+    setIsOpen(true);
+  }
+
+  const closeModal = () =>{
+    setIsOpen(false);
+  }
+
   const options = {
     colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'], maxValue: 100 },
     datalessRegionColor: 'lightgray',
@@ -63,16 +66,12 @@ const CovidMap = () => {
             {
               eventName: 'select',
               callback: ({ chartWrapper }) => {
-                
                 const chart = chartWrapper.getChart();
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
-                const region = covidData[selection[0].row + 1];
                 const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
-                console.log(iso)
                 setIso(iso);
-                setCountryClicked(true);
-                //navigate('/country', {state: { Country: region[0] }});
+                openModal();
               },
             },
           ]}
@@ -84,11 +83,29 @@ const CovidMap = () => {
           mapsApiKey={apiKey}
         />
       }
-      {countryClicked &&
-          <Table iso={iso}/>
-      }
 
-      
+      <Modal 
+        className="Modal__Bootstrap modal-dialog"
+        isOpen={modalIsOpen} 
+        onRequestClose={closeModal} 
+      >
+        <div className="modal-content">
+
+          <div className="modal-header">
+            <h4 className="modal-title">Country Data:</h4>
+            <button type="button" className="close" id='modal-close-button' onClick={closeModal}>
+              <span aria-hidden="true">&times;</span>
+              <span className="sr-only"></span>
+            </button>
+          </div>
+        
+          { loading ? <Loader/> :
+            <div className="modal-body" id="new-thread-form">
+              <Table iso={iso}/>
+            </div>
+          }
+        </div>
+      </Modal>
 
 
     </div>
