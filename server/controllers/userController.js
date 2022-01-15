@@ -4,9 +4,6 @@ const { hashPassword, comparePassword } = require('../encryption');
 const userController = {};
 
 userController.signup = async (req, res, next) => {
-  // add query text
-  // add conditional statement to check that user inserted all fields
-  //this check for input needs to be updated, this is just a placeholder to test that user input data
   if (
     !req.body.first_name ||
     !req.body.last_name ||
@@ -22,7 +19,7 @@ userController.signup = async (req, res, next) => {
     try {
       console.log(req.body);
 
-      //const password = await hashPassword(req.body.password);
+      const password = await hashPassword(req.body.password);
 
       const params = [
         first_name,
@@ -68,22 +65,13 @@ userController.login = async (req, res, next) => {
   const params = [email];
   try {
     const userPassword = await db.query(query, params);
-    // const isMatch = await comparePassword(
-    //   password,
-    //   userPassword.rows[0].password
-    // );
+    const isMatch = await comparePassword(
+      password,
+      userPassword.rows[0].password
+    );
     
-    //just using this until signup is setup
-    if(password === userPassword.rows[0].password){
-      res.locals.isMatch = true;
-    }
-    else res.locals.isMatch = false;
-
-    // console.log(userPassword.rows[0].password);
     res.locals.id = userPassword.rows[0]._id;
-    
-    // res.locals.isMatch = isMatch;
-    
+    res.locals.isMatch = isMatch;
   
     return next();
   } catch (err) {
@@ -98,7 +86,7 @@ userController.login = async (req, res, next) => {
 
 userController.getAllUsers = (req, res, next) => {
 
-  const queryText = 'SELECT * FROM users'
+  const queryText = 'SELECT * FROM users';
 
   db.query(queryText, (err, result) => {
     if(!result){
