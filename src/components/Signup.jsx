@@ -8,7 +8,7 @@ const[state, setState] = useState({
   firstName: '',
   lastName: '',
   email: '',
-  password1: '',
+  password: '',
   password2: ''
 });
 
@@ -48,7 +48,7 @@ console.log(state)
       </div>
       <div>
         <label>Password</label>
-        <input type="password" name="password1" required onChange = {handleChange}/>
+        <input type="password" name="password" required onChange = {handleChange}/>
       </div>
       <div>
         <label>Re-enter Password</label>
