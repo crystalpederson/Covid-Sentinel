@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Signup = () => {
 // console.log("test")
 
-<<<<<<< HEAD
 const[state, setState] = useState({
   firstName: '',
   lastName: '',
@@ -11,15 +11,6 @@ const[state, setState] = useState({
   password: '',
   password2: ''
 });
-=======
-  const[state, setState] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password1: '',
-    password2: ''
-  });
->>>>>>> dev
 
 
   const handleChange = event => {
@@ -36,6 +27,23 @@ const[state, setState] = useState({
     // this is going to send everything to the database
     // find out what post headers and things are needed in order to send to the database
     console.log(state);
+
+    const data = {
+     first_name: state.firstName,
+     last_name: state.lastName,
+     email: state.email,
+     password: state.password
+    };
+
+    axios.post("/api/signup", data)
+  .then(res =>{
+ console.log(res)
+ console.log(res.data)
+//  if (data) navigate('country')
+  })
+  .catch( err =>{
+    if (err) console.log(err)
+  });
 
 
 
