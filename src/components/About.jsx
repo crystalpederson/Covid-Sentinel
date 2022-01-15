@@ -12,7 +12,7 @@ const About = () => {
       <div>
         <Founders />
       </div>
-      <Signup />
+      
     </div>
   );
 };
