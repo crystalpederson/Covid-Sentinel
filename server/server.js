@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 const apiRouter = require('./routes/api');
 const keysRouter = require('./routes/keys');
+const favesRouter = require('./routes/faves')
 
 
 app.use(cors());
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api', apiRouter);
 app.use('/keys', keysRouter);
+app.use('/faves', favesRouter);
 
 app.use((req, res) => res.sendStatus(404));
 
