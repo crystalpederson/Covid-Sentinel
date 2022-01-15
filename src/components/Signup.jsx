@@ -34,7 +34,7 @@ const Signup = () => {
     <div>
      
     
-      <div>
+      <div className = "frontPage">
         <label>First Name</label>
         <input type="text" name='firstName' required onChange = {handleChange} />
         <h1></h1>
