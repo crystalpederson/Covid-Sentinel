@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { FaHeart } from 'react-icons/fa';
 
 
-const CountryCard = () => {
-  const allCountries = ['USA', 'South Africa', 'Japan', 'Boliva', 'Jordan']
-  const [ countries, setCountries ] = useState(allCountries);
+const CountryCard = (props) => {
+  const { countries, setCountries } = props;
 
-  const handleFavorite = (country) => {
-    setCountries((countries) => countries.filter(word => word !== country))
+  const handleFavorite = (country, id = 1) => {
+    // setCountries((countries) => countries.filter(word => word !== country))
+
+    const info = { country_name: country };
+
+    // Send a DELETE request
+    axios.delete(`/faves/${id}`, { data: info })
+      .then((res) => console.log(`Deleted ${country}`))
+      .catch((err) => console.log("Error: could not delete country from favorites database", err))
   }
 
   return (

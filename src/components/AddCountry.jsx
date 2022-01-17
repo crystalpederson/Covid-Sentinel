@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 const AddCountry = () => {
-
   const [searchText, setSearchText] = useState("");
 
-  const onSearchChange = (e) => {
-    console.log(e.target.value);
-    setSearchText(e.target.value);
+  const onSearchChange = (event) => {
+    setSearchText(event.target.value);
+    console.log(searchText);
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(searchText);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Remember to store the user's id somewhere to be referenced
+    const info = {
+      id: 1,
+      country_name: searchText,
+    }
+
+    // Send a POST request
+    axios.post(`/faves/${info.id}`, info)
+      .then((res) => console.log(`${info.country_name} added to database.`))
+      .catch((err) => console.log("Error: could not post country to favorites database", err))
+
+    // Reset the content of text field after post
+    setSearchText("");
   }
 
   return (
