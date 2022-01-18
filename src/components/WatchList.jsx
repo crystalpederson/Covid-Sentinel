@@ -18,13 +18,14 @@ const WatchList = () => {
   }
 
   useEffect(() => {
+    console.log('Ran use effect');
     getFaves(1);
   }, []);
 
   return (
     <div className="container w-full mx-auto md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
       <h3>Watch List</h3>
-      <AddCountry />
+      <AddCountry countries={countries} setCountries={setCountries} />
       <CountryCard countries={countries} setCountries={setCountries}/>
     </div>
   )
