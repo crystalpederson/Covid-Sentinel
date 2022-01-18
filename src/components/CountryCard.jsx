@@ -19,24 +19,25 @@ const CountryCard = (props) => {
 
   return (
     <>
-      <div className="flex flex-wrap w-full p-3">
-        {console.log('Countries for re-rendering', countries)}
+      <div className="flex flex-wrap justify-center">
         {countries.map((country) => (
-          <div key={country} className="bg-white border rounded shadow p-2 m-4">
-            <div className="flex flex-row items-center">
-              <div className="flex-shrink pr-6">
-                <div className="rounded p-3 bg-green-600">Flag?</div>
+          <div key={country} className="bg-white box-content h-12 w-64 p-3 m-3 border rounded shadow">
+            <div className="grid grid-cols-3">
+              <div className="pr-2">
+                <div className="rounded p-3 bg-[#AEDADD]">Flag?</div>
               </div>
-              <div className="flex-1 text-right md:text-center">
-                  <h5 className="font-bold uppercase text-xl text-gray-500">{country}</h5>
-                  <div>
-                    <div className="flex flex-row items-center">
-                      <h3 className="font-bold text-sm pr-2">CovidCases%</h3>
-                        <FaHeart 
-                          color={countries.includes(country) ? "rgb(128, 0, 32)" : "rgb(74, 85, 104)"}
-                          onClick={() => handleUnfavorite(country)}/>
-                    </div>
+              <div className="col-span-2 text-center">
+                <h5 className="font-bold uppercase text-2xl text-gray-500 tracking-wide">{country}</h5>
+                <div className="flex justify-around">
+                  <div className="text-center">
+                    <h3 className="font-bold text-sm">Active Cases: ??%</h3>
                   </div>
+                  <div className="">
+                    <FaHeart 
+                      color={countries.includes(country) ? "#C27120" : "#EBEBEB"} // dark red #800020
+                      onClick={() => handleUnfavorite(country)}/>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

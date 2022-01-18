@@ -17,17 +17,22 @@ const WatchList = () => {
       .catch((err) => console.log("Error: could not post country to favorites database", err))
   }
 
+  // GET request for user's faves is done only when WatchList component is loaded
   useEffect(() => {
-    console.log('Ran use effect');
     getFaves(1);
   }, []);
 
   return (
-    <div className="container w-full mx-auto md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
-      <h3>Watch List</h3>
-      <AddCountry countries={countries} setCountries={setCountries} />
-      <CountryCard countries={countries} setCountries={setCountries}/>
-    </div>
+    <>
+      <div className="flex flex-row justify-between">
+        <h3 className="font-bold text-2xl text-gray-600 ml-6">Covid Watch List</h3>
+        <AddCountry countries={countries} setCountries={setCountries} />
+      </div>
+      <div className="flex flex-row">
+        <CountryCard countries={countries} setCountries={setCountries}/>
+      </div>
+    </>
+      
   )
 }
 

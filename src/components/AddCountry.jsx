@@ -33,17 +33,17 @@ const AddCountry = (props) => {
 
   return (
     <>
-      <div className="flex flex-row justify-end">
+      <div className="flex flex-row justify-end mr-6">
         <input 
           type="text"
           placeholder="Country Name" 
           onChange={onSearchChange}
           value={searchText}
-          className="text-md text-gray-700 bg-gray-100 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-2 leading-normal"></input>
+          className="text-lg text-gray-700 bg-gray-100 transition border border-2 focus:outline-none focus:border-[#DB996C] rounded py-1 px-2 pl-2 mr-1 leading-normal"></input>
         <button 
           type="submit" 
           onClick={handleSubmit}
-          className="text-md text-gray-700 bg-gray-100 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-2 leading-normal">
+          className="text-md text-gray-700 bg-gray-100 transition border border-2 focus:outline-none focus:border-[#DB996C] rounded py-1 px-2 pl-2 leading-normal">
             Add
         </button>
       </div>

@@ -3,10 +3,9 @@ import WatchList from './WatchList'
 
 const Dashboard = () => {
   return (
-    <>
-      <h1>Dashboard</h1>
+    <div className="bg-[#EBEBEB] p-6">
       <WatchList />
-    </>
+    </div>
   )
 }
 
