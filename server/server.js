@@ -15,10 +15,6 @@ const PORT = process.env.PORT || 3000;
 const apiRouter = require('./routes/api');
 const keysRouter = require('./routes/keys');
 const favesRouter = require('./routes/faves');
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
 
 app.use(cors());
 app.use(express.json());

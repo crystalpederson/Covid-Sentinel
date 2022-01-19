@@ -34,31 +34,17 @@ const App = () => {
   } else {
   //if you're logged in, return:
   //return...
-<<<<<<< HEAD
     return (
       <div>
         <NavBar/>
         <Routes >
-          <Route path="/" element={<CovidMap />}></Route> 
+          <Route path="/home" element={<Dashboard />}></Route>
           <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
           <Route path="/about" element={<About />}> </Route> 
         </Routes>
         <Footer/>
       </div>
     );
-=======
-  return (
-    <div>
-      <NavBar/>
-    <Routes >
-      <Route path="/home" element={<Dashboard />}></Route>
-      <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
-      <Route path="/about" element={<About />}> </Route> 
-    </Routes>
-    <Footer/>
-    </div>
-  )
->>>>>>> dev
   }
 
 };

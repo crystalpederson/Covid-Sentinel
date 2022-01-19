@@ -1,4 +1,5 @@
 const Session = require('../models/sessionModel');
+//what is sessionData? 
 
 const sessionController = {};
 
