@@ -45,11 +45,11 @@ const CovidMap = () => {
 
   const openModal = () =>{
     setIsOpen(true);
-  }
+  };
 
   const closeModal = () =>{
     setIsOpen(false);
-  }
+  };
 
   const options = {
     colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'], maxValue: 100 },
@@ -99,11 +99,10 @@ const CovidMap = () => {
             </button>
           </div>
         
-          { loading ? <Loader/> :
-            <div className="modal-body" id="new-thread-form">
-              <Table iso={iso}/>
-            </div>
-          }
+          <div className="modal-body" id="new-thread-form">
+            <Table iso={iso}/>
+          </div>
+
         </div>
       </Modal>
 
