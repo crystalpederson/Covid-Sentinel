@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const connectDB = require('../routes/db');
+connectDB();
 
 // const mongoURI = 'mongodb://localhost:3000';
 // mongoose
