@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 // console.log("test")
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // const [firstName, setFirstName] = useState('');
   const[state, setState] = useState({
@@ -13,31 +13,31 @@ const navigate = useNavigate();
   });
 
 
-const handleChange = event => {
+  const handleChange = event => {
   
     setState({...state, [event.target.name]: event.target.value });
   
   };
 
 
-const handleSubmit = event => {
+  const handleSubmit = event => {
   // navigate('about');
-  console.log(state)
-const data = state;
-// send data to the database
+    console.log(state);
+    const data = state;
+    // send data to the database
 
-axios.post("/api/login", data)
-  .then(res =>{
- console.log(res)
- console.log(res.data)
-//  if (data) navigate('country')
-  })
-  .catch( err =>{
-    if (err) console.log(err)
-  });
-};
+    axios.post('/api/login', data)
+      .then(res =>{
+        console.log(res);
+        console.log(res.data);
+        //  if (data) navigate('country')
+      })
+      .catch( err =>{
+        if (err) console.log(err);
+      });
+  };
 
-// if login is authenticated then navigate to home 
+  // if login is authenticated then navigate to home 
 
 
   return (

@@ -2,20 +2,25 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
+
 const dotenv = require('dotenv');
 dotenv.config();
+
+const connectDB = require('./routes/db');
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const apiRouter = require('./routes/api');
 const keysRouter = require('./routes/keys');
-const favesRouter = require('./routes/faves')
+const favesRouter = require('./routes/faves');
 
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
