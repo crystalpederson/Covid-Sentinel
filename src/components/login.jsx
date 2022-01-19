@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 // console.log("test")
-
+const navigate = useNavigate();
 
   // const [firstName, setFirstName] = useState('');
   const[state, setState] = useState({
     email: '',
     password: ''
   });
-    
-  const handleChange = event => {
+
+
+const handleChange = event => {
   
     setState({...state, [event.target.name]: event.target.value });
   
   };
 
 
-  const handleSubmit = event => {
+const handleSubmit = event => {
+  // navigate('about');
+  console.log(state)
+const data = state;
+// send data to the database
 
-    // send data to the database
-    const data = state;
+axios.post("/api/login", data)
+  .then(res =>{
+ console.log(res)
+ console.log(res.data)
+//  if (data) navigate('country')
+  })
+  .catch( err =>{
+    if (err) console.log(err)
+  });
+};
 
-    axios.post('/api/login', data)
-      .then(res =>{
-        console.log(res.data);
-      })
-      .catch( err => {
-        if (err) console.log(err);
-      });
-  };
+// if login is authenticated then navigate to home 
 
 
   return (
