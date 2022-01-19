@@ -16,7 +16,6 @@ module.exports = {
 
   //devtool: 'inline-source-map',
 
-
   module: {
     rules: [
       {
@@ -60,7 +59,7 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:3000',
       '/keys': 'http://localhost:3000',
-      '/faves': 'http://localhost:3000'
+      '/faves': 'http://localhost:3000',
     },
   },
 };

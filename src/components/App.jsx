@@ -7,6 +7,7 @@ import Login from './Login';
 import CovidMap from './CovidMap';
 import VaccineMap from './VaccineMap';
 import About from './About';
+import Dashboard from './Dashboard';
 
 const App = () => {
   
@@ -33,6 +34,7 @@ const App = () => {
   } else {
   //if you're logged in, return:
   //return...
+<<<<<<< HEAD
     return (
       <div>
         <NavBar/>
@@ -44,6 +46,19 @@ const App = () => {
         <Footer/>
       </div>
     );
+=======
+  return (
+    <div>
+      <NavBar/>
+    <Routes >
+      <Route path="/home" element={<Dashboard />}></Route>
+      <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
+      <Route path="/about" element={<About />}> </Route> 
+    </Routes>
+    <Footer/>
+    </div>
+  )
+>>>>>>> dev
   }
 
 };
