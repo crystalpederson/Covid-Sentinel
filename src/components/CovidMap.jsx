@@ -6,6 +6,7 @@ import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
 import Table from './Table';
 import Modal from 'react-modal';
+import FaveCountry from './FaveCountry';
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
@@ -14,6 +15,7 @@ const CovidMap = () => {
   const [iso, setIso] = useState('');
   const [allData, setAllData] = useState({});
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('');
   
   useEffect(() => {
     axios.get('/keys').then((res) => {
@@ -29,10 +31,10 @@ const CovidMap = () => {
         setAllData(data);
         
         const cache = data.map((el) => {
-          const percentInfected = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
-          return [countryCodeToName[el.Country] || el.Country, percentInfected];
+          const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
+          return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
         });
-        cache.unshift(['Country', 'Active Cases per 1000 people']);
+        cache.unshift(['Country', 'Active cases per 1000 people', 'Total number of active cases']);
 
         
         setCovidData(cache);
@@ -49,6 +51,7 @@ const CovidMap = () => {
 
   const closeModal = () =>{
     setIsOpen(false);
+    setSelectedCountry('');
   };
 
   const options = {
@@ -71,6 +74,7 @@ const CovidMap = () => {
                 if (selection.length === 0) return;
                 const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
                 setIso(iso);
+                setSelectedCountry(allData[selection[0].row]['Country']);
                 openModal();
               },
             },
@@ -85,14 +89,15 @@ const CovidMap = () => {
       }
 
       <Modal 
-        className="Modal__Bootstrap modal-dialog"
+        portalClassName="country-modal"
         isOpen={modalIsOpen} 
         onRequestClose={closeModal} 
       >
         <div className="modal-content">
 
           <div className="modal-header">
-            <h4 className="modal-title">Country Data:</h4>
+            <h1 className="modal-title">{selectedCountry}<FaveCountry selectedCountry={selectedCountry}/></h1>
+            
             <button type="button" className="close" id='modal-close-button' onClick={closeModal}>
               <span aria-hidden="true">&times;</span>
               <span className="sr-only"></span>
