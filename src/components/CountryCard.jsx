@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FaHeart } from 'react-icons/fa';
 
 
+
 const CountryCard = (props) => {
   const { countries, setCountries } = props;
 
@@ -36,6 +37,8 @@ const CountryCard = (props) => {
                     <FaHeart 
                       color={countries.includes(country) ? "#C27120" : "#EBEBEB"} // dark red #800020
                       onClick={() => handleUnfavorite(country)}/>
+
+                   
                   </div>
                 </div>
               </div>

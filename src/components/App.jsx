@@ -12,7 +12,7 @@ import Dashboard from './Dashboard';
 const App = () => {
   
   //logged in variable
-  const loggedIn = false;
+  const loggedIn = true;
   if (!loggedIn){
   //if you are not logged in, return:
     //nav bar  
