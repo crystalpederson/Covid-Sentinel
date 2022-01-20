@@ -33,6 +33,14 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options:{
+          name: './img/covid.png',
+        }
+       
+      },
     ],
   },
   resolve: {

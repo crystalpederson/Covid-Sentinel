@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Img from './../../img/covid.png';
+// import Styles from './stylesheets/styles.css';
 
 const Signup = () => {
 // console.log("test")
-
+const navigate = useNavigate();
 const[state, setState] = useState({
   firstName: '',
   lastName: '',
@@ -39,40 +43,52 @@ const[state, setState] = useState({
   .then(res =>{
  console.log(res)
  console.log(res.data)
-//  if (data) navigate('country')
+ if (data) navigate('login');
   })
   .catch( err =>{
-    if (err) console.log(err)
+    if (err) alert("There was an error with your submission. Please try again!");
   });
 
 
 
   };
   return (
-    <div>
+    <div  id = "outerBackground">
      
-    
-      <div>
-        <label>First Name</label>
+     <h1 className = "headline">Covid Sentinel</h1>
+     
+    <div className = "parent">
+    <img src={Img} alt = "img"  />
+      <div className = "firstPage">
+        <label>First Name :</label>
         <input type="text" name='firstName' required onChange = {handleChange} />
-        <h1></h1>
-        <label>Last Name</label>
+      </div>
+      <div className = "firstPage">
+        <label>Last Name :</label>
         <input type="text" name="lastName" required onChange = {handleChange}/>
       </div>
-      <div>
-        <label>Email Address</label>
+      <div className = "firstPage">
+        <label>Email Address :</label>
         <input type="text" name="email" required onChange = {handleChange}/>
       </div>
-      <div>
-        <label>Password</label>
+        <div className = "firstPage" >
+        <label>Password :</label>
         <input type="password" name="password" required onChange = {handleChange}/>
       </div>
-      <div>
-        <label>Re-enter Password</label>
+      <div className = "firstPage">
+        <label>Re-enter Password :</label>
         <input type="password" name="password2" required onChange = {handleChange}/>
       </div>
-      <button type="submit" onClick ={handleSubmit}>Sign Up</button>
+      <div className = "button">
+      <button  type="submit" onClick ={handleSubmit}>Sign Up</button>
+      </div>
+      <div className =  "toLogin">
+      <Link to="/login">Click here if you already have an account</Link>
+      
+      </div>
       {/* <h1>{pass2}</h1> */}
+      
+      </div>
       
     </div>
     
