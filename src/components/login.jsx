@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Img from './../../img/covid.png';
 
 const Login = () => {
 // console.log("test")
@@ -30,10 +32,10 @@ axios.post("/api/login", data)
   .then(res =>{
  console.log(res)
  console.log(res.data)
-//  if (data) navigate('country')
+if (data) navigate('home')
   })
   .catch( err =>{
-    if (err) console.log(err)
+    if (err) alert("There was an error with your credentials. Please try again or click the link below to sign up!")
   });
 };
 
@@ -41,22 +43,27 @@ axios.post("/api/login", data)
 
 
   return (
-    <div>
-    
-      <div>
-        <label>Email Address</label>
+    <div id = "outerBackground">
+
+      <h1 >Covid Sentinel</h1>
+   
+      
+      <div >
+        <label>Email Address :</label>
         <input type="text" name="email" required onChange = {handleChange}/>
       </div>
-      <div>
-        <label>Password</label>
+      <div >
+        <label>Password :</label>
         <input type="password" name="password" required onChange = {handleChange}/>
       </div>
-     
+      <div >
       <button type="submit" onClick ={handleSubmit}>Log In</button>
-      <h1></h1>
-     
-      
-    </div>
+      </div>
+      <div >
+      <Link to="/">Click here if you do not have an account</Link>
+     </div>
+    </div>  
+    
     
   );
 };
