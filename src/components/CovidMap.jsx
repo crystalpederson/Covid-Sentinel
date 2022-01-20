@@ -7,6 +7,7 @@ import Loader from './Spinner';
 import Table from './Table';
 import Modal from 'react-modal';
 import FaveCountry from './FaveCountry';
+import CountryData from './CountryData';
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
@@ -16,6 +17,7 @@ const CovidMap = () => {
   const [allData, setAllData] = useState({});
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [countryData, setCountryData] = useState({});
   
   useEffect(() => {
     axios.get('/keys').then((res) => {
@@ -75,6 +77,7 @@ const CovidMap = () => {
                 const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
                 setIso(iso);
                 setSelectedCountry(allData[selection[0].row]['Country']);
+                setCountryData(allData[selection[0].row]);
                 openModal();
               },
             },
@@ -107,6 +110,7 @@ const CovidMap = () => {
           </div>
         
           <div className="modal-body" id="new-thread-form">
+            <CountryData countryData={countryData}/>
             <Table iso={iso}/>
           </div>
 
