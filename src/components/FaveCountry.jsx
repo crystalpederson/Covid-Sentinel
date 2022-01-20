@@ -49,9 +49,9 @@ const FaveCountry = ({selectedCountry}) =>{
     const data = { country_name: selectedCountry };
 
     axios.post(`/faves/${id}`, data)
-    .then((res) => console.log(`Added ${selectedCountry}`))
-    .then(setFavorited(true))
-    .catch((err) => console.log(err));
+      .then((res) => console.log(`Added ${selectedCountry}`))
+      .then(setFavorited(true))
+      .catch((err) => console.log(err));
     
   };
 

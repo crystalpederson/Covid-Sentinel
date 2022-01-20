@@ -96,8 +96,10 @@ const CovidMap = () => {
         <div className="modal-content">
 
           <div className="modal-header">
-            <h1 className="modal-title">{selectedCountry}<FaveCountry selectedCountry={selectedCountry}/></h1>
-            
+            <div className="modal-title">
+              <h1 className='country-name'>{selectedCountry}</h1>
+              <FaveCountry selectedCountry={selectedCountry}/>
+            </div>
             <button type="button" className="close" id='modal-close-button' onClick={closeModal}>
               <span aria-hidden="true">&times;</span>
               <span className="sr-only"></span>
