@@ -116,3 +116,22 @@ img{
     height: 100%;
     
 }
+
+/* modal styling */
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-title{
+    display: flex;
+    align-items: center;
+}
+
+.modal-content{
+    margin: 10px;
+}
+
+.country-name{
+    margin-right: 8px;
+}

@@ -12,6 +12,7 @@ const VaccineMap = () => {
   const [ countryData, setCountryData ] = useState([]);
   const [ loading, setLoading ] = useState(true);
   const { state } = useLocation();
+  
   let iso;
   if (!state) {
     vaccinationOptions.params['iso'] = 'USA';
@@ -54,7 +55,7 @@ const VaccineMap = () => {
 
   return (
     <div>
-      <h1>Vaccine Map</h1>
+      {/* <h1>Vaccine Map</h1>
       {loading ? <Loader/> :
         <Chart 
           chartType="GeoChart"
@@ -63,7 +64,7 @@ const VaccineMap = () => {
           data={countryData}
           options={options}
         />
-      }
+      } */}
       {loading ? <Loader/> : 
         <Table iso={iso}/>
       }
