@@ -7,6 +7,7 @@ import Login from './Login';
 import CovidMap from './CovidMap';
 import VaccineMap from './VaccineMap';
 import About from './About';
+import Dashboard from './Dashboard';
 
 const App = () => {
   
@@ -37,7 +38,7 @@ const App = () => {
     <div>
       <NavBar/>
     <Routes >
-      <Route path="/home" element={<CovidMap />}></Route> 
+      <Route path="/home" element={<Dashboard />}></Route>
       <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
       <Route path="/about" element={<About />}> </Route> 
     </Routes>
