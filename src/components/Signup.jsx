@@ -4,13 +4,13 @@ import axios from 'axios';
 const Signup = () => {
 // console.log("test")
 
-  const[state, setState] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    password2: ''
-  });
+const[state, setState] = useState({
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  password2: ''
+});
 
 
   const handleChange = event => {
@@ -29,21 +29,21 @@ const Signup = () => {
     console.log(state);
 
     const data = {
-      first_name: state.firstName,
-      last_name: state.lastName,
-      email: state.email,
-      password: state.password
+     first_name: state.firstName,
+     last_name: state.lastName,
+     email: state.email,
+     password: state.password
     };
 
-    axios.post('/api/signup', data)
-      .then(res =>{
-        console.log(res);
-        console.log(res.data);
-        //  if (data) navigate('country')
-      })
-      .catch( err =>{
-        if (err) console.log(err);
-      });
+    axios.post("/api/signup", data)
+  .then(res =>{
+ console.log(res)
+ console.log(res.data)
+//  if (data) navigate('country')
+  })
+  .catch( err =>{
+    if (err) console.log(err)
+  });
 
 
 

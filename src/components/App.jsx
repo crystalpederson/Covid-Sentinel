@@ -19,32 +19,32 @@ const App = () => {
     //sign up component
     //log in component
     //footer
-    return (
-      <div>
-        <NavBar />
-        <Routes >
-          <Route exact path = '/' element = {<Signup/>}> </Route>
-          <Route path = '/login' element ={<Login/> }></Route>
-        </Routes>
+  return (
+    <div>
+       <NavBar />
+    <Routes >
+      <Route exact path = '/' element = {<Signup/>}> </Route>
+      <Route path = '/login' element ={<Login/> }></Route>
+    </Routes>
          
         <Footer />  
       
-      </div>
-    );
+    </div>
+  );
   } else {
   //if you're logged in, return:
   //return...
-    return (
-      <div>
-        <NavBar/>
-        <Routes >
-          <Route path="/home" element={<Dashboard />}></Route>
-          <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
-          <Route path="/about" element={<About />}> </Route> 
-        </Routes>
-        <Footer/>
-      </div>
-    );
+  return (
+    <div>
+      <NavBar/>
+    <Routes >
+      <Route path="/home" element={<Dashboard />}></Route>
+      <Route path="/country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>} ></Route> 
+      <Route path="/about" element={<About />}> </Route> 
+    </Routes>
+    <Footer/>
+    </div>
+  )
   }
 
 };
