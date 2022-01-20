@@ -5,11 +5,11 @@ import axios from 'axios';
 const AddCountry = (props) => {
   
   const { countries, setCountries } = props;
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const onSearchChange = (event) => {
     setSearchText(event.target.value);
-  };
+  }
 
   const handleSubmit = (event, id = 1) => {
     event.preventDefault();
@@ -17,19 +17,19 @@ const AddCountry = (props) => {
     // Remember to store the user's id somewhere to be referenced
     const info = {
       country_name: searchText,
-    };
+    }
 
     // Send a POST request
     axios.post(`/faves/${id}`, info)
       .then((res) => {
-        setCountries(() => [...countries, res.data]);
-        console.log(`${info.country_name} added to database.`);
+        setCountries(() => [...countries, res.data])
+        console.log(`${info.country_name} added to database.`)
       })
-      .catch((err) => console.log('Error: could not post country to favorites database', err));
+      .catch((err) => console.log("Error: could not post country to favorites database", err))
 
     // Reset the content of text field after post
-    setSearchText('');
-  };
+    setSearchText("");
+  }
 
   return (
     <>
@@ -48,8 +48,8 @@ const AddCountry = (props) => {
         </button>
       </div>
     </>
-  );
-};
+  )
+}
 
 
 export default AddCountry;
