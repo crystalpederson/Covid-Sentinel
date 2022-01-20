@@ -14,8 +14,8 @@ const CountryCard = (props) => {
       .then((res) => console.log(`Deleted ${country}`))
       // Filter the deleted country name out of the countries state
       .then(setCountries((countries) => countries.filter(word => word !== country)))
-      .catch((err) => console.log("Error: could not delete country from favorites database", err))
-  }
+      .catch((err) => console.log('Error: could not delete country from favorites database', err));
+  };
 
   return (
     <>
@@ -34,7 +34,7 @@ const CountryCard = (props) => {
                   </div>
                   <div className="">
                     <FaHeart 
-                      color={countries.includes(country) ? "#C27120" : "#EBEBEB"} // dark red #800020
+                      color={countries.includes(country) ? '#C27120' : '#EBEBEB'} // dark red #800020
                       onClick={() => handleUnfavorite(country)}/>
                   </div>
                 </div>
@@ -44,8 +44,8 @@ const CountryCard = (props) => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
 
 export default CountryCard;
