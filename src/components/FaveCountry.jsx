@@ -9,7 +9,7 @@ const FaveCountry = ({selectedCountry}) =>{
   const [favorited, setFavorited] = useState(false);
   
   //currently hard coded to user 1
-  const id = sessionStorage.getItem('id');
+  const id = 1;
   
   //check if current country is in the user's favorites
   //get their favorites from the database
