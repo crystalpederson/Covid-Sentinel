@@ -26,14 +26,21 @@ const CountryData = ({countryData}) => {
     setInfo(cache);
   }, []);
 
+  var cssClassNames = {
+    'tableCell': 'table-cell'
+  };
+
+  const options ={
+    'cssClassNames': cssClassNames
+  };
+
   return(
     <div>
-      <h2>Covid-19 Data</h2>
       <Chart
         chartType="Table"
         width="100%"
-        height="400px"
         data={info}
+        options={options}
       />
     </div>
 

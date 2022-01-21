@@ -4,10 +4,8 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
-import VaccineData from './VaccineData';
 import Modal from 'react-modal';
-import FaveCountry from './FaveCountry';
-import CountryData from './CountryData';
+import ModalContent from './ModalContent';
 
 
 const CovidMap = () => {
@@ -97,28 +95,11 @@ const CovidMap = () => {
       <Modal 
         portalClassName="country-modal"
         isOpen={modalIsOpen} 
-        onRequestClose={closeModal} 
+        onRequestClose={closeModal}
+        style={{content:{background: '#FCF8F3'}}}
       >
-        <div className="modal-content">
-
-          <div className="modal-header">
-            <div className="modal-title">
-              <h1 className='country-name'>{selectedCountry}</h1>
-              <FaveCountry selectedCountry={selectedCountry}/>
-            </div>
-            <button type="button" className="close" id='modal-close-button' onClick={closeModal}>
-              <span aria-hidden="true">&times;</span>
-              <span className="sr-only"></span>
-            </button>
-          </div>
-        
-          <div className="modal-body" id="new-thread-form">
-            <CountryData countryData={countryData}/>
-            <VaccineData iso={iso}/>
-            {/* <CovidGraph iso={iso}/> */}
-          </div>
-
-        </div>
+        <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
+       
       </Modal>
 
 
