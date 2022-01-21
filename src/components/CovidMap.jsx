@@ -4,9 +4,11 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
-import Table from './Table';
+import VaccineData from './VaccineData';
 import Modal from 'react-modal';
 import FaveCountry from './FaveCountry';
+import CountryData from './CountryData';
+
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
@@ -16,6 +18,7 @@ const CovidMap = () => {
   const [allData, setAllData] = useState({});
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [countryData, setCountryData] = useState({});
   
   useEffect(() => {
     axios.get('/keys').then((res) => {
@@ -31,6 +34,7 @@ const CovidMap = () => {
         setAllData(data);
         
         const cache = data.map((el) => {
+          
           const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
           return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
         });
@@ -55,14 +59,15 @@ const CovidMap = () => {
   };
 
   const options = {
-    colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'], maxValue: 100 },
+    colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'], minValue: 0, maxValue: 100 },
     datalessRegionColor: 'lightgray',
     backgroundColor: '#FCF8F3',
   };
 
+
   return (
     <div className='flex flex-col min-h-screen'>
-      <h1>Click on a Country to see the latest info</h1>
+      <h1 id='map-title'>Click on a country below to view Covid-19 data</h1>
       { loading ? <Loader/> :
         <Chart 
           chartEvents={[
@@ -75,6 +80,7 @@ const CovidMap = () => {
                 const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
                 setIso(iso);
                 setSelectedCountry(allData[selection[0].row]['Country']);
+                setCountryData(allData[selection[0].row]);
                 openModal();
               },
             },
@@ -107,7 +113,9 @@ const CovidMap = () => {
           </div>
         
           <div className="modal-body" id="new-thread-form">
-            <Table iso={iso}/>
+            <CountryData countryData={countryData}/>
+            <VaccineData iso={iso}/>
+            {/* <CovidGraph iso={iso}/> */}
           </div>
 
         </div>
