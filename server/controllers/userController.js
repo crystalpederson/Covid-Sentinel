@@ -69,11 +69,15 @@ userController.login = async (req, res, next) => {
       password,
       userPassword.rows[0].password
     );
-    
+    //console.log(res);
     res.locals.id = userPassword.rows[0]._id;
     res.locals.isMatch = isMatch;
-  
-    return next();
+    res.locals.email = email;
+    
+    if (res.locals.isMatch === true) {
+      return next();
+    } 
+
   } catch (err) {
     return next({
       log: `Error with userController.login ${err}`,

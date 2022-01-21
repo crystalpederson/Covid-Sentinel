@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddCountry from './AddCountry';
-import CountryCard from './CountryCard'
+import CountryCard from './CountryCard';
 
 
 const WatchList = () => {
   const [ countries, setCountries ] = useState([]);
+
+  const id = sessionStorage.getItem('id');
 
   const getFaves = (id) => {
     // Send a GET request for all countries in favorites for user
     axios.get(`/faves/${id}`)
       .then((res) => res.data)
       .then((data) => {
-        data.map((item) => setCountries((countries) => [...countries, item.country_name]))
+        data.map((item) => setCountries((countries) => [...countries, item.country_name]));
       })
-      .catch((err) => console.log("Error: could not post country to favorites database", err))
-  }
+      .catch((err) => console.log('Error: could not post country to favorites database', err));
+  };
 
   // GET request for user's faves is done only when WatchList component is loaded
   useEffect(() => {
-    getFaves(1);
+    getFaves(id);
   }, []);
 
   return (
@@ -33,8 +35,8 @@ const WatchList = () => {
       </div>
     </>
       
-  )
-}
+  );
+};
 
 
 export default WatchList;

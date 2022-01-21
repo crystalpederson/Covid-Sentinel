@@ -1,45 +1,55 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Img from './../../img/covid.png';
 
 const Login = () => {
-// console.log("test")
-const navigate = useNavigate();
+
+  const navigate = useNavigate();
 
   // const [firstName, setFirstName] = useState('');
   const[state, setState] = useState({
     email: '',
-    password: ''
+    password: '',
+  
   });
 
 
-const handleChange = event => {
+  const handleChange = event => {
   
     setState({...state, [event.target.name]: event.target.value });
+
   
   };
 
 
-const handleSubmit = event => {
+  const handleSubmit = event => {
   // navigate('about');
-  console.log(state)
-const data = state;
-// send data to the database
+    //console.log(state);
+    const data = state;
+    // send data to the database
+    axios.post('/api/login', data)
+      .then(res =>{
+        console.log(res);
+        sessionStorage.setItem('email', res.data.email);
+        sessionStorage.setItem('loggedIn', res.data.isMatch);
+        sessionStorage.setItem('id', res.data.id);
+        //let userEmail = sessionStorage.getItem('email');
+        //let userLogin = sessionStorage.getItem('loggedIn');
 
-axios.post("/api/login", data)
-  .then(res =>{
- console.log(res)
- console.log(res.data)
-if (data) navigate('home')
-  })
-  .catch( err =>{
-    if (err) alert("There was an error with your credentials. Please try again or click the link below to sign up!")
-  });
-};
 
-// if login is authenticated then navigate to home 
+        //window.location.href = '/dashboard';
+        if (res.data.isMatch === true) {
+          navigate('home');
+        } 
+      })
+      .catch( err =>{
+        if (err) alert('There was an error with your credentials. Please try again or click the link below to sign up!');
+      });
+  };
+
+  // if login is authenticated then navigate to home 
 
 
   return (
@@ -57,11 +67,11 @@ if (data) navigate('home')
         <input type="password" name="password" required onChange = {handleChange}/>
       </div>
       <div >
-      <button type="submit" onClick ={handleSubmit}>Log In</button>
+        <button type="submit" onClick = {handleSubmit}>Log In</button>
       </div>
       <div >
-      <Link to="/">Click here if you do not have an account</Link>
-     </div>
+        <Link to="/">Click here if you do not have an account</Link>
+      </div>
     </div>  
     
     
