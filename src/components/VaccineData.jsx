@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { vaccinationOptions } from '../utils/constants';
+import Loader from './Spinner';
 
 
 var cssClassNames = {
@@ -17,6 +18,7 @@ const options = {
 const VaccineData = ({iso}) => {
   const [ covidData, setCovidData ] = useState([]);
   const [ source, setSource ] = useState('');
+  const [loading, setLoading] = useState(true);
 
   vaccinationOptions.params['iso'] = iso;
 
@@ -36,6 +38,7 @@ const VaccineData = ({iso}) => {
         cache.push(['Total people fully vaccinated', Math.round(data['people_fully_vaccinated'])]);
         cache.push(['Type of vaccines', data['vaccines']]);
         setCovidData(cache);
+        setLoading(false);
       })
       .catch(function (error) {
         console.error(error);
@@ -44,12 +47,17 @@ const VaccineData = ({iso}) => {
 
   return (
     <div>
-      <Chart
-        chartType="Table"
-        width="100%"
-        data={covidData}
-        options={options}
-      />
+      { loading ? <Loader/> :
+        <div>
+        <Chart
+          chartType="Table"
+          width="100%"
+          data={covidData}
+          options={options}
+        />
+        <p id='source'>{source}</p>
+        </div>
+      }
     </div>
   );
 };

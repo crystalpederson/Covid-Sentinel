@@ -2,11 +2,12 @@ import React from 'react';
 import { useEffect, useState } from 'react/cjs/react.development';
 import axios from 'axios';
 import Chart from 'react-google-charts';
+import Loader from './Spinner';
 
 
 const CovidGraph = ({iso}) => {
-  const [rawData, setRawData] = useState([]);
   const [newCases, setNewCases] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() =>{
     //on load, fetch data for selected country
@@ -22,8 +23,6 @@ const CovidGraph = ({iso}) => {
     axios.request(options)
       .then((res) => res.data)
       .then((data) => {
-        setRawData(data);
-
         const cache = [['Date', 'Number of New Cases']];
         data.forEach((el) => {
           cache.push([el.date, el.new_cases]);
@@ -31,6 +30,7 @@ const CovidGraph = ({iso}) => {
 
         //format data correctly to send
         setNewCases(cache);
+        setLoading(false);
 
       })
       .catch(function (error) {
@@ -52,13 +52,15 @@ const CovidGraph = ({iso}) => {
 
   return(
     <div id= 'line-graph'>
-      <Chart
-        height={'400px'}
-        width={'800px'}
-        chartType='LineChart'
-        data={newCases}
-        options={options}
-      />
+      { loading ? <Loader/> :
+        <Chart
+          height={'400px'}
+          width={'800px'}
+          chartType='LineChart'
+          data={newCases}
+          options={options}
+        />
+      }
     </div>
   );
 };
