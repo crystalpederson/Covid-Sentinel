@@ -65,4 +65,24 @@ favesController.deleteFaves = async (req, res, next) => {
   }
 };
 
+favesController.deleteFaves = async (req, res, next) => {
+  const { country_name } = req.body;
+  //const id = req.params.id;
+  const param = [country_name];
+
+  const text = 'DELETE FROM favorites where country_name = $1';
+  try {
+    const favesList = db.query(text, param);
+    res.locals.favesList = favesList.rows;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Error in favesController.deleteFaves: ${err}`,
+      message: {
+        err: 'Error in the backend from favesController.deleteFaves',
+      },
+    });
+  }
+};
+
 module.exports = favesController;

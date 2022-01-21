@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './Navbar';
 import Footer from './Footer';
 import Signup from './Signup';
-import Login from './login';
+import Login from './Login';
 import CovidMap from './CovidMap';
 
 import About from './About';
@@ -12,8 +12,7 @@ import Dashboard from './Dashboard';
 const App = () => {
   
   //logged in variable
-  const loggedIn = sessionStorage.getItem('loggedIn');
-  const id = sessionStorage.getItem('id');
+  const loggedIn = true;
   if (!loggedIn){
   //if you are not logged in, return:
     //nav bar  

@@ -25,6 +25,6 @@ router.post('/login', login, setSSIDCookie, startSession, (req, res) => {
   // steps: login middleware to verify user data in db, session middleware, cookie middleware to set cookie
   // inputs: email, password
   // res.status(200).send('Successfully logged in');
-  return res.status(200).json({ isMatch: res.locals.isMatch, id: res.locals.id, email: res.locals.email });
+  return res.status(200).json({ isMatch: res.locals.isMatch });
 });
 module.exports = router;
