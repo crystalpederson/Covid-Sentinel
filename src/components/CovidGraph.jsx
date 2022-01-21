@@ -28,7 +28,6 @@ const CovidGraph = ({iso}) => {
         data.forEach((el) => {
           cache.push([el.date, el.new_cases]);
         });
-        console.log(cache);
 
         //format data correctly to send
         setNewCases(cache);

@@ -4,10 +4,6 @@ import CountryData from './CountryData';
 import VaccineData from './VaccineData';
 import CovidGraph from './CovidGraph';
 
-
-//bring in closeModal function
-//selected Country name
-
 const ModalContent = ({iso, selectedCountry, closeModal, countryData}) => {
 
   return(
@@ -44,7 +40,7 @@ const ModalContent = ({iso, selectedCountry, closeModal, countryData}) => {
       </div>
 
     </div>
-  )
+  );
 };
 
 export default ModalContent;
