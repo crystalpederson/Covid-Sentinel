@@ -29,6 +29,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "dotenv-webpack": "^7.0.3",
+    "js-cookie": "^3.0.1",
     "mongoose": "^6.1.7",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",

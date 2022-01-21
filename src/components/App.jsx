@@ -1,18 +1,34 @@
 import React from 'react';
+import { useEffect, useState } from 'react/cjs/react.development';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 import NavBar from './Navbar';
 import Footer from './Footer';
 import Signup from './Signup';
 import Login from './Login';
 import CovidMap from './CovidMap';
-
 import About from './About';
 import Dashboard from './Dashboard';
 
 const App = () => {
-  
+  // const [ID, setID] = useState(0);
+  // const [loggedIn, setLoggedIn] = useState('false');
+
+  // useEffect(() =>{
+  //   const id = Cookies.get('ssid');
+  //   const numId = parseInt(id);
+  //   if(numId > 0){
+  //     setID(numId);
+  //     setLoggedIn(true);
+  //     console.log('logged in')
+  //   }
+  // }, []);
+
+  const loggedIn=true;
+
   //logged in variable
-  const loggedIn = true;
+  // const loggedIn = true;
   if (!loggedIn){
   //if you are not logged in, return:
     //nav bar  
@@ -38,8 +54,7 @@ const App = () => {
       <div>
         <NavBar/>
         <Routes >
-          {/* temp route: */}
-          <Route path="/" element={<CovidMap/>}></Route>
+          <Route path="/" element={<Dashboard />}></Route>
           <Route path="/home" element={<Dashboard />}></Route>
           <Route path="/worldmap" element={<CovidMap />}></Route>
           <Route path="/about" element={<About />}> </Route> 
