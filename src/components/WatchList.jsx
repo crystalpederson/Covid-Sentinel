@@ -7,6 +7,8 @@ import CountryCard from './CountryCard';
 const WatchList = () => {
   const [ countries, setCountries ] = useState([]);
 
+  const id = sessionStorage.getItem('id');
+
   const getFaves = (id) => {
     // Send a GET request for all countries in favorites for user
     axios.get(`/faves/${id}`)
@@ -19,7 +21,7 @@ const WatchList = () => {
 
   // GET request for user's faves is done only when WatchList component is loaded
   useEffect(() => {
-    getFaves(1);
+    getFaves(id);
   }, []);
 
   return (
