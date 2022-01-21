@@ -12,23 +12,19 @@ import About from './About';
 import Dashboard from './Dashboard';
 
 const App = () => {
-  // const [ID, setID] = useState(0);
-  // const [loggedIn, setLoggedIn] = useState('false');
+  const [ID, setID] = useState(0);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  // useEffect(() =>{
-  //   const id = Cookies.get('ssid');
-  //   const numId = parseInt(id);
-  //   if(numId > 0){
-  //     setID(numId);
-  //     setLoggedIn(true);
-  //     console.log('logged in')
-  //   }
-  // }, []);
+  useEffect(() =>{
+    const id = Cookies.get('ssid');
+    if(id){
+      const numId = parseInt(id);
+      setLoggedIn(true);
+      setID(numId);
+    }
+  }, []);
+  
 
-  const loggedIn=true;
-
-  //logged in variable
-  // const loggedIn = true;
   if (!loggedIn){
   //if you are not logged in, return:
     //nav bar  
@@ -54,8 +50,8 @@ const App = () => {
       <div>
         <NavBar/>
         <Routes >
-          <Route path="/" element={<Dashboard />}></Route>
-          <Route path="/home" element={<Dashboard />}></Route>
+          <Route path="/" element={<Dashboard ID={ID}/>}></Route>
+          <Route path="/home" element={<Dashboard ID={ID}/>}></Route>
           <Route path="/worldmap" element={<CovidMap />}></Route>
           <Route path="/about" element={<About />}> </Route> 
         </Routes>

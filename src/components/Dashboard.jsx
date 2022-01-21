@@ -1,10 +1,10 @@
 import React from 'react';
 import WatchList from './WatchList'
 
-const Dashboard = () => {
+const Dashboard = ({ID}) => {
   return (
     <div className="bg-[#EBEBEB] p-6">
-      <WatchList />
+      <WatchList ID={ID}/>
     </div>
   )
 }

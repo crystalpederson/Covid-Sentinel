@@ -8,7 +8,7 @@ import object from '../utils/isoCodes';
 
 
 const CountryCard = (props) => {
-  const { countries, setCountries } = props;
+  const { countries, setCountries, ID } = props;
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -17,11 +17,11 @@ const CountryCard = (props) => {
 
 
 
-  const handleUnfavorite = (country, id = 1) => {
+  const handleUnfavorite = (country, ID) => {
     const info = { country_name: country };
 
     // Send a DELETE request
-    axios.delete(`/faves/${id}`, { data: info })
+    axios.delete(`/faves/${ID}`, { data: info })
       .then((res) => console.log(`Deleted ${country}`))
       // Filter the deleted country name out of the countries state
       .then(setCountries((countries) => countries.filter(word => word !== country)))
@@ -77,7 +77,7 @@ const CountryCard = (props) => {
                   <div className="heart-icon">
                     <FaHeart 
                       color={countries.includes(country) ? '#C27120' : '#EBEBEB'} // dark red #800020
-                      onClick={() => handleUnfavorite(country)}/>
+                      onClick={() => handleUnfavorite(country, {ID})}/>
                   </div>
                 </div>
               </div>

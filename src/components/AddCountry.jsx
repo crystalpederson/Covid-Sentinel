@@ -4,15 +4,16 @@ import axios from 'axios';
 
 const AddCountry = (props) => {
   
-  const { countries, setCountries } = props;
+  const { countries, setCountries, ID } = props;
   const [searchText, setSearchText] = useState('');
 
   const onSearchChange = (event) => {
     setSearchText(event.target.value);
   };
 
-  const handleSubmit = (event, id = 1) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+
 
     // Remember to store the user's id somewhere to be referenced
     const info = {
@@ -20,7 +21,7 @@ const AddCountry = (props) => {
     };
 
     // Send a POST request
-    axios.post(`/faves/${id}`, info)
+    axios.post(`/faves/${ID}`, info)
       .then((res) => {
         setCountries(() => [...countries, res.data]);
         console.log(`${info.country_name} added to database.`);
