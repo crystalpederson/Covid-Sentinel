@@ -41,10 +41,10 @@ const CovidGraph = ({iso}) => {
 
   const options = {
     hAxis: {
-      title: 'Time',
+      title: 'Date',
     },
     vAxis: {
-      title: 'Cases',
+      title: '# of New Cases',
     },
 
     legend: {position: 'none'}
@@ -52,15 +52,14 @@ const CovidGraph = ({iso}) => {
 
 
   return(
-    <div>
-      <h1> Graph</h1>
+    <div id= 'line-graph'>
       <Chart
-            width={'700px'}
-            height={'500px'}
-            chartType='LineChart'
-            data={newCases}
-            options={options}
-            />
+        height={'400px'}
+        width={'800px'}
+        chartType='LineChart'
+        data={newCases}
+        options={options}
+      />
     </div>
   );
 };
