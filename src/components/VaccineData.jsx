@@ -15,7 +15,7 @@ const formatters = [
   },
 ];
 
-const Table = ({iso}) => {
+const VaccineData = ({iso}) => {
   const [ covidData, setCovidData ] = useState([]);
   const [ source, setSource ] = useState('');
 
@@ -63,4 +63,4 @@ const Table = ({iso}) => {
   );
 };
 
-export default Table;
+export default VaccineData;

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body{
+    background-color: #FCF8F3;
+}
+
 #outerBackground {
     margin: auto 10px;
     width: auto;
@@ -116,6 +121,15 @@ img{
     height: 100%;
     
 }
+
+
+/* Map page styling */
+#map-title{
+    text-align: center;
+    margin: 10px;
+    font-size: 1.5em;
+}
+
 
 /* modal styling */
 .modal-header{
