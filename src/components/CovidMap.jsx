@@ -8,6 +8,8 @@ import VaccineData from './VaccineData';
 import Modal from 'react-modal';
 import FaveCountry from './FaveCountry';
 import CountryData from './CountryData';
+import Graph from './chart';
+import CovidGraph from './CovidGraph';
 
 
 const CovidMap = () => {
@@ -94,6 +96,8 @@ const CovidMap = () => {
         />
       }
 
+      <Graph/>
+
       <Modal 
         portalClassName="country-modal"
         isOpen={modalIsOpen} 
@@ -115,7 +119,7 @@ const CovidMap = () => {
           <div className="modal-body" id="new-thread-form">
             <CountryData countryData={countryData}/>
             <VaccineData iso={iso}/>
-            {/* <CovidGraph iso={iso}/> */}
+            <CovidGraph iso={iso}/>
           </div>
 
         </div>

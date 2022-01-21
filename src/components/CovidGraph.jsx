@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react/cjs/react.development';
 import axios from 'axios';
+import Chart from 'react-google-charts';
 
 
 const CovidGraph = ({iso}) => {
@@ -23,9 +24,9 @@ const CovidGraph = ({iso}) => {
       .then((data) => {
         setRawData(data);
 
-        const cache = [];
+        const cache = [['Date', 'Number of New Cases']];
         data.forEach((el) => {
-          cache.push({x: el.date, y: el.new_cases});
+          cache.push([el.date, el.new_cases]);
         });
         console.log(cache);
 
@@ -38,12 +39,28 @@ const CovidGraph = ({iso}) => {
       });
   }, []);
 
+  const options = {
+    hAxis: {
+      title: 'Time',
+    },
+    vAxis: {
+      title: 'Cases',
+    },
+
+    legend: {position: 'none'}
+  };
 
 
   return(
     <div>
       <h1> Graph</h1>
-      
+      <Chart
+            width={'700px'}
+            height={'500px'}
+            chartType='LineChart'
+            data={newCases}
+            options={options}
+            />
     </div>
   );
 };
