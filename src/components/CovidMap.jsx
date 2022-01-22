@@ -165,10 +165,7 @@ const CovidMap = (props) => {
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
                 const countryName = covidData[selection[0].row + 1][0];
-                console.log('countryName', countryName);
                 setCountryData(allData[countryName]);
-                // const name = allData[countryName].country;
-                // console.log('variable name', name);
                 const iso = object[countryName];
                 //console.log(iso);
                 setIso(iso);
