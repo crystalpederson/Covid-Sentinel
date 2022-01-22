@@ -5,7 +5,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="flex justify-center bg-[#EBEBEB] border-t-2">
+    <div className="flex justify-center bg-[#EBEBEB] border-t-2 fixed inset-x-0 bottom-0">
       <div className="text-left">
         Copyright &#169; 2022. All rights reserved.
       </div>
