@@ -6,8 +6,6 @@ import Modal from 'react-modal';
 import ModalContent from './ModalContent';
 import object from '../utils/isoCodes';
 
-
-
 const CountryCard = (props) => {
   const { countries, setCountries, ID, allData } = props;
 
@@ -16,23 +14,32 @@ const CountryCard = (props) => {
   const [iso, setIso] = useState('');
   const [countryData, setCountryData] = useState({});
 
-
-
   const handleUnfavorite = (country, ID) => {
     const info = { country_name: country };
+    console.log('This is info object', info);
 
     // Send a DELETE request
-    axios.delete(`/faves/${ID}`, { data: info })
+    axios
+      .delete(`/faves/${ID}`, { data: info })
       .then((res) => console.log(`Deleted ${country}`))
       // Filter the deleted country name out of the countries state
-      .then(setCountries((countries) => countries.filter(word => word !== country)))
-      .catch((err) => console.log('Error: could not delete country from favorites database', err));
+      .then(
+        setCountries((countries) =>
+          countries.filter((word) => word !== country)
+        )
+      )
+      .catch((err) =>
+        console.log(
+          'Error: could not delete country from favorites database',
+          err
+        )
+      );
   };
 
-  const openModal = (country) =>{
+  const openModal = (country) => {
     setSelectedCountry(country);
-    console.log(country);
-    console.log(allData[country]);
+    // console.log(country);
+    // console.log(allData[country]);
     setIso(object[country]);
     setCountryData(allData[country]);
 
@@ -44,7 +51,7 @@ const CountryCard = (props) => {
     //     'x-rapidapi-key': process.env.VACCOVID_API_KEY
     //   }
     // };
-        
+
     // axios.request(options)
     //   .then((res) => res.data)
     //   .then((data) => {
@@ -59,32 +66,58 @@ const CountryCard = (props) => {
     setIsOpen(true);
   };
 
-  const closeModal = () =>{
+  const closeModal = () => {
     setIsOpen(false);
     setSelectedCountry('');
   };
 
-
+  const randomPercenatages = [
+    '2.89',
+    '0.32',
+    '1.04',
+    '2.37',
+    '4.20',
+    '3.67',
+    '5.11',
+    '1.99',
+    '2.82',
+    '1.09',
+    '1.62',
+    '1.81',
+    '1.89',
+    '0.02',
+  ];
 
   return (
     <>
-      <div className="flex flex-wrap justify-center">
-        {countries.map((country) => (
-          <div key={country} className="bg-white box-content h-12 w-64 p-3 m-3 border rounded shadow" >
-            <div className="grid grid-cols-3">
-              <div className="pr-2">
-                <div className="rounded p-3 bg-[#AEDADD]">Flag?</div>
+      <div className='flex flex-wrap justify-right'>
+        {countries.map((countryName, index) => (
+          <div
+            key={countryName}
+            className='bg-white box-content h-12 w-64 p-3 m-3 border rounded shadow'>
+            <div className='grid grid-cols-3'>
+              <div className='pr-2'>
+                <div className='rounded p-3 bg-[#AEDADD]'>Flag?</div>
               </div>
-              <div className="col-span-2 text-center">
-                <h5 className="font-bold uppercase text-2xl text-gray-500 tracking-wide" onClick={()=>openModal(country)}>{country}</h5>
-                <div className="flex justify-around">
-                  <div className="text-center">
-                    <h3 className="font-bold text-sm">Active Cases: ??%</h3>
+              <div className='col-span-2 text-center'>
+                <h5
+                  className='font-bold uppercase text-2xl text-gray-500 tracking-wide'
+                  onClick={() => openModal(countryName)}>
+                  {countryName}
+                </h5>
+                <div className='flex justify-around'>
+                  <div className='text-center'>
+                    <h3 className='font-bold text-sm'>
+                      Active Cases: {randomPercenatages[index]}%
+                    </h3>
                   </div>
-                  <div className="heart-icon">
-                    <FaHeart 
-                      color={countries.includes(country) ? '#C27120' : '#EBEBEB'} // dark red #800020
-                      onClick={() => handleUnfavorite(country, {ID})}/>
+                  <div className='heart-icon'>
+                    <FaHeart
+                      color={
+                        countries.includes(countryName) ? '#C27120' : '#EBEBEB'
+                      } // dark red #800020
+                      onClick={() => handleUnfavorite(countryName, { ID })}
+                    />
                   </div>
                 </div>
               </div>
@@ -93,19 +126,23 @@ const CountryCard = (props) => {
         ))}
 
         <Modal
-          portalClassName="country-modal"
-          isOpen={modalIsOpen} 
+          portalClassName='country-modal'
+          isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          style={{content:{background: '#FCF8F3'}}}
-        >
+          style={{ content: { background: '#FCF8F3' } }}>
           {/* put this modal content back when api is working */}
           {/* <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/> */}
-          <ModalContent ID={ID} iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
+          <ModalContent
+            ID={ID}
+            iso={iso}
+            selectedCountry={selectedCountry}
+            countryData={countryData}
+            closeModal={closeModal}
+          />
         </Modal>
       </div>
     </>
   );
 };
-
 
 export default CountryCard;
