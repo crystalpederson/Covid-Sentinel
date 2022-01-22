@@ -49,7 +49,7 @@ body{
 }
 
 #outerBackground {
-    margin: auto 10px;
+    /* margin: auto 10px; */
     width: auto;
     /* height: 1000px; */
     height: 100vh;
@@ -162,6 +162,53 @@ body{
     
 } */
 
+/* Login page styling */
+.login-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FCF8F3;
+    border-radius: 2%;
+}
+
+.login-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  color: #6E7DA2;
+}
+
+.login-button{
+    color: #6E7DA2;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.link-to-signIn{
+    color: #6E7DA2;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+}
+
+#login-picture {
+    max-height: 60vh;
+    border-radius: 2%;
+}
 
 /* Map page styling */
 #map-title{
@@ -245,4 +292,8 @@ body{
 /* watchlist */
 #watchlist{
     margin-bottom: 50px;
+}
+
+.news-picture {
+    width: 300px;
 }

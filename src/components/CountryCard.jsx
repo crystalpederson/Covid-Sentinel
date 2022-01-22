@@ -7,6 +7,7 @@ import ModalContent from './ModalContent';
 import object from '../utils/isoCodes';
 
 
+
 const CountryCard = (props) => {
   const { countries, setCountries, ID, allData } = props;
 
