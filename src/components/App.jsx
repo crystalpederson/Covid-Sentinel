@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import NavBar from './Navbar';
 import Footer from './Footer';
 import Signup from './Signup';
-import Login from './Login';
+import Login from './login';
 import CovidMap from './CovidMap';
 import About from './About';
 import Dashboard from './Dashboard';
@@ -31,6 +31,7 @@ const App = () => {
         <NavBar loggedIn={loggedIn}/>
         <Routes >
           <Route exact path = '/' element = {<Signup/>}> </Route>
+          <Route exact path = '/signup' element = {<Signup/>}> </Route>
           <Route path = '/login' element ={<Login/> }></Route>
         </Routes>
          

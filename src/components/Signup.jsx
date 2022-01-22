@@ -56,9 +56,10 @@ const Signup = () => {
     <div  id = "sign-up-page">
      
       <h1 className = "headline">Covid Sentinel</h1>
-     
+      <div className='main-content'>
+     <img src={Img} alt = "img"  />
       <div className = "parent" id='signup-form'>
-        <img src={Img} alt = "img"  />
+        
         <div className = "firstPage">
           <label>First Name :</label>
           <input id='first-name' type="text" name='firstName' required onChange = {handleChange} />
@@ -88,7 +89,7 @@ const Signup = () => {
         </div>
       
       </div>
-      
+      </div>
     </div>
     
   );
