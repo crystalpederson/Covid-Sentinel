@@ -3,8 +3,10 @@ import FaveCountry from './FaveCountry';
 import CountryData from './CountryData';
 import VaccineData from './VaccineData';
 import CovidGraph from './CovidGraph';
+import VaccGraph from './VaccGraph';
+import { useEffect } from 'react/cjs/react.development';
 
-const ModalContent = ({iso, selectedCountry, closeModal, countryData}) => {
+const ModalContent = ({iso, selectedCountry, closeModal, countryData, ID}) => {
 
   return(
     <div className="modal-content">
@@ -19,7 +21,7 @@ const ModalContent = ({iso, selectedCountry, closeModal, countryData}) => {
       <div className="modal-body">
         <div className="modal-title">
           <h1 className='country-name'>{selectedCountry}</h1>
-          <FaveCountry selectedCountry={selectedCountry}/>
+          <FaveCountry ID={ID} selectedCountry={selectedCountry}/>
         </div>
         <div id='country-tables'>
           <div className='covid-table'>
@@ -33,8 +35,10 @@ const ModalContent = ({iso, selectedCountry, closeModal, countryData}) => {
         </div>
 
         <div className='covid-graph'>
-          <h2 className='chart-title'>Number of New Cases Per Day</h2>
-          <CovidGraph  iso={iso}/>
+          {/* <h2 className='chart-title'>Number of New Cases Per Day</h2>
+          <CovidGraph  iso={iso}/> */}
+          <h2 className='chart-title'>% of Population Vaccinated</h2>
+          <VaccGraph  iso={iso}/>
         </div>
             
       </div>

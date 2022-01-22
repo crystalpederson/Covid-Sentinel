@@ -4,12 +4,12 @@ import axios from 'axios';
 import { FaHeart } from 'react-icons/fa';
 import { FiHeart } from 'react-icons/fi';
 
-const FaveCountry = ({selectedCountry}) =>{
+const FaveCountry = ({selectedCountry, ID}) =>{
 
   const [favorited, setFavorited] = useState(false);
   
   //currently hard coded to user 1
-  const id = 1;
+  const id = ID;
   
   //check if current country is in the user's favorites
   //get their favorites from the database

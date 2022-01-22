@@ -1,10 +1,11 @@
 import React from 'react';
-import WatchList from './WatchList'
+import WatchList from './WatchList';
+import VaccGraph from './VaccGraph';
 
-const Dashboard = () => {
+const Dashboard = ({ID}) => {
   return (
     <div className="bg-[#EBEBEB] p-6">
-      <WatchList />
+      <WatchList ID={ID}/>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import AddCountry from './AddCountry';
 import CountryCard from './CountryCard';
 
 
-const WatchList = () => {
+const WatchList = ({ID}) => {
   const [ countries, setCountries ] = useState([]);
 
   const getFaves = (id) => {
@@ -19,7 +19,7 @@ const WatchList = () => {
 
   // GET request for user's faves is done only when WatchList component is loaded
   useEffect(() => {
-    getFaves(1);
+    getFaves(ID);
   }, []);
 
   
@@ -28,10 +28,10 @@ const WatchList = () => {
     <>
       <div className="flex flex-row justify-between">
         <h3 className="font-bold text-2xl text-gray-600 ml-6">Covid Watch List</h3>
-        <AddCountry countries={countries} setCountries={setCountries} />
+        <AddCountry countries={countries} setCountries={setCountries} ID={ID}/>
       </div>
       <div className="flex flex-row">
-        <CountryCard countries={countries} setCountries={setCountries}/>
+        <CountryCard countries={countries} setCountries={setCountries} ID={ID}/>
       </div>
     </>
       
