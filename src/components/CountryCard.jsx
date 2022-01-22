@@ -7,7 +7,8 @@ import ModalContent from './ModalContent';
 import object from '../utils/isoCodes';
 
 const CountryCard = (props) => {
-  const { countries, setCountries, ID } = props;
+  const { countries, setCountries, ID, apiCountryData } = props;
+  console.log(apiCountryData);
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -16,6 +17,7 @@ const CountryCard = (props) => {
 
   const handleUnfavorite = (country, ID) => {
     const info = { country_name: country };
+    console.log('This is info object', info);
 
     // Send a DELETE request
     axios
@@ -67,12 +69,29 @@ const CountryCard = (props) => {
     setSelectedCountry('');
   };
 
+  const randomPercenatages = [
+    '2.89',
+    '0.32',
+    '1.04',
+    '2.37',
+    '4.20',
+    '3.67',
+    '5.11',
+    '1.99',
+    '2.82',
+    '1.09',
+    '1.62',
+    '1.81',
+    '1.89',
+    '0.02',
+  ];
+
   return (
     <>
       <div className='flex flex-wrap justify-right'>
-        {countries.map((country) => (
+        {countries.map((countryName, index) => (
           <div
-            key={country}
+            key={countryName}
             className='bg-white box-content h-12 w-64 p-3 m-3 border rounded shadow'>
             <div className='grid grid-cols-3'>
               <div className='pr-2'>
@@ -81,19 +100,21 @@ const CountryCard = (props) => {
               <div className='col-span-2 text-center'>
                 <h5
                   className='font-bold uppercase text-2xl text-gray-500 tracking-wide'
-                  onClick={() => openModal(country)}>
-                  {country}
+                  onClick={() => openModal(countryName)}>
+                  {countryName}
                 </h5>
                 <div className='flex justify-around'>
                   <div className='text-center'>
-                    <h3 className='font-bold text-sm'>Active Cases: ??%</h3>
+                    <h3 className='font-bold text-sm'>
+                      Active Cases: {randomPercenatages[index]}%
+                    </h3>
                   </div>
                   <div className='heart-icon'>
                     <FaHeart
                       color={
-                        countries.includes(country) ? '#C27120' : '#EBEBEB'
+                        countries.includes(countryName) ? '#C27120' : '#EBEBEB'
                       } // dark red #800020
-                      onClick={() => handleUnfavorite(country, { ID })}
+                      onClick={() => handleUnfavorite(countryName, { ID })}
                     />
                   </div>
                 </div>

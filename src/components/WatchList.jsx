@@ -3,7 +3,8 @@ import axios from 'axios';
 import AddCountry from './AddCountry';
 import CountryCard from './CountryCard';
 
-const WatchList = ({ ID }) => {
+const WatchList = (props) => {
+  const { ID, apiCountryData } = props;
   const [countries, setCountries] = useState([]);
 
   const getFaves = (id) => {
@@ -38,6 +39,7 @@ const WatchList = ({ ID }) => {
               countries={countries}
               setCountries={setCountries}
               ID={ID}
+              apiCountryData={apiCountryData}
             />
           </div>
         </div>
