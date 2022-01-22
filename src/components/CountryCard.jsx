@@ -8,7 +8,7 @@ import object from '../utils/isoCodes';
 
 
 const CountryCard = (props) => {
-  const { countries, setCountries, ID } = props;
+  const { countries, setCountries, ID, allData } = props;
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -30,7 +30,10 @@ const CountryCard = (props) => {
 
   const openModal = (country) =>{
     setSelectedCountry(country);
+    console.log(country);
+    console.log(allData[country]);
     setIso(object[country]);
+    setCountryData(allData[country]);
 
     // var options = {
     //   method: 'GET',
@@ -96,7 +99,7 @@ const CountryCard = (props) => {
         >
           {/* put this modal content back when api is working */}
           {/* <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/> */}
-          <ModalContent ID={ID} iso={iso} selectedCountry={selectedCountry} closeModal={closeModal}/>
+          <ModalContent ID={ID} iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
         </Modal>
       </div>
     </>

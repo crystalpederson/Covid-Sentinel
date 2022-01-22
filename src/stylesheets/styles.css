@@ -7,6 +7,10 @@ body{
     background-color: #FCF8F3;
 }
 
+#signup-image{
+    height: 200px;
+}
+
 #outerBackground {
     margin: auto 10px;
     width: auto;
@@ -200,4 +204,9 @@ img{
 #source{
     margin-top: 10px;
     font-size: 10px;
+}
+
+/* watchlist */
+#watchlist{
+    margin-bottom: 50px;
 }

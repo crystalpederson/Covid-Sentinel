@@ -6,7 +6,7 @@ import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
 import Modal from 'react-modal';
 import ModalContent from './ModalContent';
-import object from '../utils/isoCodes'
+import object from '../utils/isoCodes';
 
 
 const CovidMap = ({ID}) => {
@@ -73,7 +73,7 @@ const CovidMap = ({ID}) => {
           const infectedPerThou = Math.round((countryInfo[i]['cases']['active'] / countryInfo[i]['population']) * 1000) || 0;
           cache.push([countryInfo[i]['country'], infectedPerThou, countryInfo[i]['cases']['active']]);
           
-          allCountryData[countryInfo[i]['country']] = countryInfo[i]
+          allCountryData[countryInfo[i]['country']] = countryInfo[i];
         }
         setAllData(allCountryData);
         setCovidData(cache);
@@ -82,7 +82,7 @@ const CovidMap = ({ID}) => {
       .catch(function (error) {
         console.error(error);
       });
-      //temporary fix end
+    //temporary fix end
 
   }, []);
 
@@ -126,7 +126,7 @@ const CovidMap = ({ID}) => {
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
                 const countryName = covidData[selection[0].row + 1][0];
-                setCountryData(allData[countryName])
+                setCountryData(allData[countryName]);
                 const iso = object[countryName];
                 setIso(iso);
                 setSelectedCountry(countryName);
