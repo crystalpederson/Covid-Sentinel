@@ -26,14 +26,9 @@ const App = () => {
   
 
   if (!loggedIn){
-  //if you are not logged in, return:
-    //nav bar  
-    //sign up component
-    //log in component
-    //footer
     return (
       <div>
-        <NavBar />
+        <NavBar loggedIn={loggedIn}/>
         <Routes >
           <Route exact path = '/' element = {<Signup/>}> </Route>
           <Route path = '/login' element ={<Login/> }></Route>
@@ -44,11 +39,9 @@ const App = () => {
       </div>
     );
   } else {
-  //if you're logged in, return:
-  //return...
     return (
       <div>
-        <NavBar/>
+        <NavBar loggedIn={loggedIn}/>
         <Routes >
           <Route path="/" element={<Dashboard ID={ID}/>}></Route>
           <Route path="/home" element={<Dashboard ID={ID}/>}></Route>
@@ -63,13 +56,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-{/* <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="" element={<CovidMap />} />
-          <Route path="home" element={<CovidMap />} />
-          <Route path="country" element={<VaccineMap />} render={(props) => <VaccineMap {...props}/>}/>
-          <Route path="about" element={<About />} />
-        </Route> */}
