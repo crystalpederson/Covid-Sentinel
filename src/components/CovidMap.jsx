@@ -1,19 +1,24 @@
 import React from 'react';
-// Where does is import point to? Importing useEffect and useState directly from react doesn't break anything
 import { useEffect, useState } from 'react/cjs/react.development';
 import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
-import { Link, useNavigate } from 'react-router-dom';
-
+import VaccineData from './VaccineData';
+import Modal from 'react-modal';
+import FaveCountry from './FaveCountry';
+import CountryData from './CountryData';
 
 
 const CovidMap = () => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [apiKey, setApiKey] = useState('');
-  const navigate = useNavigate();
+  const [iso, setIso] = useState('');
+  const [allData, setAllData] = useState({});
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [countryData, setCountryData] = useState({});
   
   useEffect(() => {
     axios.get('/keys').then((res) => {
@@ -26,10 +31,16 @@ const CovidMap = () => {
       .request(covidOptions)
       .then((response) => response.data)
       .then((data) => {
+        setAllData(data);
+        
         const cache = data.map((el) => {
-          return [countryCodeToName[el.Country] || el.Country, el.TotalCases];
+          
+          const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
+          return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
         });
-        cache.unshift(['Country', 'Total Cases']);
+        cache.unshift(['Country', 'Active cases per 1000 people', 'Total number of active cases']);
+
+        
         setCovidData(cache);
         setLoading(false);
       })
@@ -38,14 +49,25 @@ const CovidMap = () => {
       });
   }, []);
 
-  const options = {
-    colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'] },
-    backgroundColor: '#FCF8F3' 
+  const openModal = () =>{
+    setIsOpen(true);
   };
+
+  const closeModal = () =>{
+    setIsOpen(false);
+    setSelectedCountry('');
+  };
+
+  const options = {
+    colorAxis: { colors: ['#AEDADD', '#F3E0AA', '#DB996C'], minValue: 0, maxValue: 100 },
+    datalessRegionColor: 'lightgray',
+    backgroundColor: '#FCF8F3',
+  };
+
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <h1>Covid Map</h1>
+      <h1 id='map-title'>Click on a country below to view Covid-19 data</h1>
       { loading ? <Loader/> :
         <Chart 
           chartEvents={[
@@ -55,8 +77,11 @@ const CovidMap = () => {
                 const chart = chartWrapper.getChart();
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
-                const region = covidData[selection[0].row + 1];
-                navigate('/country', {state: { Country: region[0] }});
+                const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                setIso(iso);
+                setSelectedCountry(allData[selection[0].row]['Country']);
+                setCountryData(allData[selection[0].row]);
+                openModal();
               },
             },
           ]}
@@ -68,6 +93,34 @@ const CovidMap = () => {
           mapsApiKey={apiKey}
         />
       }
+
+      <Modal 
+        portalClassName="country-modal"
+        isOpen={modalIsOpen} 
+        onRequestClose={closeModal} 
+      >
+        <div className="modal-content">
+
+          <div className="modal-header">
+            <div className="modal-title">
+              <h1 className='country-name'>{selectedCountry}</h1>
+              <FaveCountry selectedCountry={selectedCountry}/>
+            </div>
+            <button type="button" className="close" id='modal-close-button' onClick={closeModal}>
+              <span aria-hidden="true">&times;</span>
+              <span className="sr-only"></span>
+            </button>
+          </div>
+        
+          <div className="modal-body" id="new-thread-form">
+            <CountryData countryData={countryData}/>
+            <VaccineData iso={iso}/>
+            {/* <CovidGraph iso={iso}/> */}
+          </div>
+
+        </div>
+      </Modal>
+
 
     </div>
   );
