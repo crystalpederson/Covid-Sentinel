@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // can i search through the site to see if that data has a specific country name?
 
+const newArray= [];
+
+
 const story1 = {
   title: 'Covid-19 hospitalizations are dropping in the Northeast. In other parts of the country, they are rising',
   link: 'https://www.cnn.com/2022/01/22/health/us-coronavirus-saturday/index.html',
@@ -173,6 +176,7 @@ const News = () => {
 
   //     </div>
   //   );
-  
+  //testing to change
+
 };
 export default News;
