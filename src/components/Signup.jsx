@@ -55,38 +55,44 @@ const Signup = () => {
   return (
     <div  id = "sign-up-page">
      
-      <h1 className = "headline">Covid Sentinel</h1>
-      <div className='main-content'>
-     <img src={Img} alt = "img"  />
-      <div className = "parent" id='signup-form'>
-        
-        <div className = "firstPage">
+      <h1 className='headline'>Covid Sentinel</h1>
+      <div id='signup-content'>
+     <img id='signup-img' src={Img} alt = "img"  />
+
+      <div id='signup-form'>
+        <div className='signup-input'>
           <label>First Name :</label>
           <input id='first-name' type="text" name='firstName' required onChange = {handleChange} />
         </div>
-        <div className = "firstPage">
+
+        <div className='signup-input'>
           <label>Last Name :</label>
           <input id='last-name' type="text" name="lastName" required onChange = {handleChange}/>
         </div>
-        <div className = "firstPage">
+
+        <div className='signup-input'>
           <label>Email Address :</label>
           <input id='email' type="text" name="email" required onChange = {handleChange}/>
         </div>
-        <div className = "firstPage" >
+
+        <div className='signup-input'>
           <label>Password :</label>
           <input id='password' type="password" name="password" required onChange = {handleChange}/>
         </div>
-        <div className = "firstPage">
+
+        <div className='signup-input'>
           <label>Re-enter Password :</label>
           <input id='password2' type="password" name="password2" required onChange = {handleChange}/>
         </div>
-        <div className = "button">
-          <button className='form-submit-button' type="submit" onClick ={handleSubmit}>Sign Up</button>
+
+        <div id='signup-button'>
+        <button className='form-submit-button' type="submit" onClick ={handleSubmit}>Sign Up</button>
         </div>
-        <div className =  "toLogin">
-          <Link to="/login">Click here if you already have an account</Link>
-      
+
+        <div id='login-redirect-link'>
+                  <Link to="/login">Click here if you already have an account</Link>
         </div>
+
       
       </div>
       </div>

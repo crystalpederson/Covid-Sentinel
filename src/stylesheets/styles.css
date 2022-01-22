@@ -7,6 +7,47 @@ body{
     background-color: #FCF8F3;
 }
 
+#signup-img{
+    height: 60vh;
+    border-radius: 5px;
+}
+
+#signup-form{
+    background-color: #FCF8F3;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#signup-button{
+    display:flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.signup-input{
+    margin-bottom: 10px;
+}
+
+#sign-up-page{
+    background-color: #6E7DA2;
+    height: 100vh;
+}
+
+.form-submit-button{
+    border: 1px solid #6E7DA2;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#login-redirect-link{
+    font-size: .8em;
+    margin-top: 20px;
+}
+#signup-content{
+    display: flex;
+    justify-content: center;
+}
+
 #outerBackground {
     /* margin: auto 10px; */
     width: auto;
@@ -19,7 +60,6 @@ body{
     margin-left: auto;
     margin-right: auto;
     width: 8em;
-    padding-top: 100px;
     /* position: relative; */
     color: #FCF8F3;
     font-size: 75px;
@@ -248,6 +288,12 @@ body{
     margin-top: 10px;
     font-size: 10px;
 }
+
+/* watchlist */
+#watchlist{
+    margin-bottom: 50px;
+}
+
 .news-picture {
     width: 300px;
 }

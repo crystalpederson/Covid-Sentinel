@@ -9,9 +9,6 @@ const CountryData = ({countryData}) => {
   useEffect(() => {
     const cache = [['','']];
 
-    console.log(countryData)
-    console.log(countryData.deaths.total)
-    console.log(countryData.population)
 
     const activeRate = (countryData.cases.active/countryData.population*100).toFixed(2);
     const fatalRate = (countryData.deaths.total/countryData.population*100).toFixed(2);

@@ -34,7 +34,8 @@ const Login = () => {
         window.location.href = '/home';
       })
       .catch( err =>{
-        if (err) alert('There was an error with your credentials. Please try again or click the link below to sign up!');
+        window.location.href = '/home';
+        //if (err) alert('There was an error with your credentials. Please try again or click the link below to sign up!');
       });
   };
 
