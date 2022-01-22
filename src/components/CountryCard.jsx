@@ -96,7 +96,7 @@ const CountryCard = (props) => {
         >
           {/* put this modal content back when api is working */}
           {/* <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/> */}
-          <ModalContent iso={iso} selectedCountry={selectedCountry} closeModal={closeModal}/>
+          <ModalContent ID={ID} iso={iso} selectedCountry={selectedCountry} closeModal={closeModal}/>
         </Modal>
       </div>
     </>
