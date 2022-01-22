@@ -1,5 +1,6 @@
 import React from 'react';
 import WatchList from './WatchList';
+import VaccGraph from './VaccGraph';
 
 const Dashboard = ({ID}) => {
   return (

@@ -3,6 +3,7 @@ import FaveCountry from './FaveCountry';
 import CountryData from './CountryData';
 import VaccineData from './VaccineData';
 import CovidGraph from './CovidGraph';
+import VaccGraph from './VaccGraph';
 
 const ModalContent = ({iso, selectedCountry, closeModal, countryData, ID}) => {
 
@@ -32,10 +33,12 @@ const ModalContent = ({iso, selectedCountry, closeModal, countryData, ID}) => {
           </div>              
         </div>
 
-        {/* <div className='covid-graph'>
-          <h2 className='chart-title'>Number of New Cases Per Day</h2>
-          <CovidGraph  iso={iso}/>
-        </div> */}
+        <div className='covid-graph'>
+          {/* <h2 className='chart-title'>Number of New Cases Per Day</h2>
+          <CovidGraph  iso={iso}/> */}
+          <h2 className='chart-title'>% of Population Vaccinated</h2>
+          <VaccGraph  iso={iso}/>
+        </div>
             
       </div>
 
