@@ -3,7 +3,7 @@ import axios from 'axios';
 import AddCountry from './AddCountry';
 import CountryCard from './CountryCard';
 
-const WatchList = () => {
+const WatchList = ({ ID }) => {
   const [countries, setCountries] = useState([]);
 
   const getFaves = (id) => {
@@ -23,7 +23,7 @@ const WatchList = () => {
 
   // GET request for user's faves is done only when WatchList component is loaded
   useEffect(() => {
-    getFaves(1);
+    getFaves(ID);
   }, []);
 
   return (
@@ -34,12 +34,20 @@ const WatchList = () => {
       <div className='grid grid-cols-5'>
         <div className='col-span-4'>
           <div className='flex flex-row'>
-            <CountryCard countries={countries} setCountries={setCountries} />
+            <CountryCard
+              countries={countries}
+              setCountries={setCountries}
+              ID={ID}
+            />
           </div>
         </div>
         <div className='col-span-1'>
           <div className='flex flex-row justify-between'>
-            <AddCountry countries={countries} setCountries={setCountries} />
+            <AddCountry
+              countries={countries}
+              setCountries={setCountries}
+              ID={ID}
+            />
           </div>
         </div>
       </div>

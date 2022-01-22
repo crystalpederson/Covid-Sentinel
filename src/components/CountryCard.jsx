@@ -7,19 +7,19 @@ import ModalContent from './ModalContent';
 import object from '../utils/isoCodes';
 
 const CountryCard = (props) => {
-  const { countries, setCountries } = props;
+  const { countries, setCountries, ID } = props;
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [iso, setIso] = useState('');
   const [countryData, setCountryData] = useState({});
 
-  const handleUnfavorite = (country, id = 1) => {
+  const handleUnfavorite = (country, ID) => {
     const info = { country_name: country };
 
     // Send a DELETE request
     axios
-      .delete(`/faves/${id}`, { data: info })
+      .delete(`/faves/${ID}`, { data: info })
       .then((res) => console.log(`Deleted ${country}`))
       // Filter the deleted country name out of the countries state
       .then(
@@ -39,28 +39,27 @@ const CountryCard = (props) => {
     setSelectedCountry(country);
     setIso(object[country]);
 
-    var options = {
-      method: 'GET',
-      url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${object[
-        country
-      ].toLowerCase()}`,
-      headers: {
-        'x-rapidapi-host':
-          'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
-        'x-rapidapi-key': process.env.VACCOVID_API_KEY,
-      },
-    };
+    // var options = {
+    //   method: 'GET',
+    //   url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${object[country].toLowerCase()}`,
+    //   headers: {
+    //     'x-rapidapi-host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
+    //     'x-rapidapi-key': process.env.VACCOVID_API_KEY
+    //   }
+    // };
 
-    axios
-      .request(options)
-      .then((res) => res.data)
-      .then((data) => {
-        setCountryData(data[0]);
-        setIsOpen(true);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    // axios.request(options)
+    //   .then((res) => res.data)
+    //   .then((data) => {
+    //     setCountryData(data[0]);
+    //     setIsOpen(true);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+
+    //get rid of this after api is working and uncomment the above
+    setIsOpen(true);
   };
 
   const closeModal = () => {
@@ -94,7 +93,7 @@ const CountryCard = (props) => {
                       color={
                         countries.includes(country) ? '#C27120' : '#EBEBEB'
                       } // dark red #800020
-                      onClick={() => handleUnfavorite(country)}
+                      onClick={() => handleUnfavorite(country, { ID })}
                     />
                   </div>
                 </div>
@@ -108,10 +107,12 @@ const CountryCard = (props) => {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={{ content: { background: '#FCF8F3' } }}>
+          {/* put this modal content back when api is working */}
+          {/* <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/> */}
           <ModalContent
+            ID={ID}
             iso={iso}
             selectedCountry={selectedCountry}
-            countryData={countryData}
             closeModal={closeModal}
           />
         </Modal>
