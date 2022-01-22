@@ -42,7 +42,7 @@ const Login = () => {
 
 
   return (
-    <div id = "outerBackground">
+    <div className='login-page' id = "outerBackground">
 
       <h1 >Covid Sentinel</h1>
    
