@@ -4,13 +4,12 @@ import { Chart } from 'react-google-charts';
 import axios from 'axios';
 import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
-import VaccineData from './VaccineData';
 import Modal from 'react-modal';
-import FaveCountry from './FaveCountry';
-import CountryData from './CountryData';
+import ModalContent from './ModalContent';
+import object from '../utils/isoCodes'
 
 
-const CovidMap = () => {
+const CovidMap = ({ID}) => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [apiKey, setApiKey] = useState('');
@@ -27,26 +26,64 @@ const CovidMap = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .request(covidOptions)
-      .then((response) => response.data)
-      .then((data) => {
-        setAllData(data);
+    // axios
+    //   .request(covidOptions)
+    //   .then((response) => response.data)
+    //   .then((data) => {
+    //     setAllData(data);
         
-        const cache = data.map((el) => {
+    //     const cache = data.map((el) => {
           
-          const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
-          return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
-        });
-        cache.unshift(['Country', 'Active cases per 1000 people', 'Total number of active cases']);
+    //       const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
+    //       return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
+    //     });
+    //     cache.unshift(['Country', 'Active cases per 1000 people', 'Total number of active cases']);
 
         
+    //     setCovidData(cache);
+    //     setLoading(false);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+
+    //temporary fix
+    var options = {
+      method: 'GET',
+      url: 'https://covid-193.p.rapidapi.com/statistics',
+      headers: {
+        'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+        'x-rapidapi-key': '9fa7052cc4msh1f61e1c37e16f0bp10048ejsn1cd3ea3c1c0a'
+      }
+    };
+
+
+    axios.request(options)
+      .then((response) => response.data)
+      .then((data) => {
+        setAllData(data.response);
+        const countryInfo = data.response;
+        const allCountryData = {};
+
+        const cache = [['Country', 'Active cases per 1000 people', 'Total number of active cases']];
+        for(let i = 0; i <countryInfo.length; i++){
+          if(countryInfo[i]['country'].includes('-')){
+            continue;
+          }
+          const infectedPerThou = Math.round((countryInfo[i]['cases']['active'] / countryInfo[i]['population']) * 1000) || 0;
+          cache.push([countryInfo[i]['country'], infectedPerThou, countryInfo[i]['cases']['active']]);
+          
+          allCountryData[countryInfo[i]['country']] = countryInfo[i]
+        }
+        setAllData(allCountryData);
         setCovidData(cache);
         setLoading(false);
       })
       .catch(function (error) {
         console.error(error);
       });
+      //temporary fix end
+
   }, []);
 
   const openModal = () =>{
@@ -74,14 +111,31 @@ const CovidMap = () => {
             {
               eventName: 'select',
               callback: ({ chartWrapper }) => {
+                // const chart = chartWrapper.getChart();
+                // const selection = chart.getSelection();
+                // if (selection.length === 0) return;
+                // console.log(selection[0].row)
+                // const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                // setIso(iso);
+                // setSelectedCountry(allData[selection[0].row]['Country']);
+                // setCountryData(allData[selection[0].row]);
+                // openModal();
+                
+                //temp fix
                 const chart = chartWrapper.getChart();
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
-                const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                const countryName = covidData[selection[0].row + 1][0];
+                setCountryData(allData[countryName])
+                const iso = object[countryName];
                 setIso(iso);
-                setSelectedCountry(allData[selection[0].row]['Country']);
-                setCountryData(allData[selection[0].row]);
+                setSelectedCountry(countryName);
                 openModal();
+                // const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                // setIso(iso);
+                // setSelectedCountry(allData[selection[0].row]['Country']);
+                // setCountryData(allData[selection[0].row]);
+                // openModal();
               },
             },
           ]}
@@ -97,28 +151,11 @@ const CovidMap = () => {
       <Modal 
         portalClassName="country-modal"
         isOpen={modalIsOpen} 
-        onRequestClose={closeModal} 
+        onRequestClose={closeModal}
+        style={{content:{background: '#FCF8F3'}}}
       >
-        <div className="modal-content">
-
-          <div className="modal-header">
-            <div className="modal-title">
-              <h1 className='country-name'>{selectedCountry}</h1>
-              <FaveCountry selectedCountry={selectedCountry}/>
-            </div>
-            <button type="button" className="close" id='modal-close-button' onClick={closeModal}>
-              <span aria-hidden="true">&times;</span>
-              <span className="sr-only"></span>
-            </button>
-          </div>
-        
-          <div className="modal-body" id="new-thread-form">
-            <CountryData countryData={countryData}/>
-            <VaccineData iso={iso}/>
-            {/* <CovidGraph iso={iso}/> */}
-          </div>
-
-        </div>
+        <ModalContent ID={ID} iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
+       
       </Modal>
 
 
