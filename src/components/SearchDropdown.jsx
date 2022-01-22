@@ -11,7 +11,7 @@ const SearchDropdown = (props) => {
   return (
     <div className='mt-1'>
       <ul className='divide-y-2 divide-gray-100'>
-        {countries.slice(0, 5).map((country) => (
+        {countries.slice(0, 4).map((country) => (
           <li
             className='bg-white rounded-lg shadow-lg h-10 hover:bg-[#DB996C] hover:text-black mb-1'
             key={country}>
