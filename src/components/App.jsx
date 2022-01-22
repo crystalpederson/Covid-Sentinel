@@ -45,7 +45,7 @@ const App = () => {
         <Routes >
           <Route path="/" element={<Dashboard ID={ID}/>}></Route>
           <Route path="/home" element={<Dashboard ID={ID}/>}></Route>
-          <Route path="/worldmap" element={<CovidMap />}></Route>
+          <Route path="/worldmap" element={<CovidMap ID={ID}/>}></Route>
           <Route path="/about" element={<About />}> </Route> 
         </Routes>
         <Footer/>

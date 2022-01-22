@@ -32,24 +32,27 @@ const CountryCard = (props) => {
     setSelectedCountry(country);
     setIso(object[country]);
 
-    var options = {
-      method: 'GET',
-      url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${object[country].toLowerCase()}`,
-      headers: {
-        'x-rapidapi-host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
-        'x-rapidapi-key': process.env.VACCOVID_API_KEY
-      }
-    };
+    // var options = {
+    //   method: 'GET',
+    //   url: `https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/${country}/${object[country].toLowerCase()}`,
+    //   headers: {
+    //     'x-rapidapi-host': 'vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com',
+    //     'x-rapidapi-key': process.env.VACCOVID_API_KEY
+    //   }
+    // };
         
-    axios.request(options)
-      .then((res) => res.data)
-      .then((data) => {
-        setCountryData(data[0]);
-        setIsOpen(true);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    // axios.request(options)
+    //   .then((res) => res.data)
+    //   .then((data) => {
+    //     setCountryData(data[0]);
+    //     setIsOpen(true);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+
+    //get rid of this after api is working and uncomment the above
+    setIsOpen(true);
   };
 
   const closeModal = () =>{
@@ -91,7 +94,9 @@ const CountryCard = (props) => {
           onRequestClose={closeModal}
           style={{content:{background: '#FCF8F3'}}}
         >
-          <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
+          {/* put this modal content back when api is working */}
+          {/* <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/> */}
+          <ModalContent iso={iso} selectedCountry={selectedCountry} closeModal={closeModal}/>
         </Modal>
       </div>
     </>

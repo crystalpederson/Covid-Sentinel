@@ -41,7 +41,7 @@ describe('Sign-up Page', () => {
   });
 
   it('allows you to submit the form', () =>{
-      cy.get('.form-submit-button')
-      .click()
-  })
+    cy.get('.form-submit-button')
+      .click();
+  });
 });

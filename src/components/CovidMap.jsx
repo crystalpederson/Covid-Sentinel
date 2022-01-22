@@ -6,9 +6,10 @@ import { covidOptions, countryCodeToName } from '../utils/constants';
 import Loader from './Spinner';
 import Modal from 'react-modal';
 import ModalContent from './ModalContent';
+import object from '../utils/isoCodes'
 
 
-const CovidMap = () => {
+const CovidMap = ({ID}) => {
   const [covidData, setCovidData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [apiKey, setApiKey] = useState('');
@@ -25,26 +26,58 @@ const CovidMap = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .request(covidOptions)
-      .then((response) => response.data)
-      .then((data) => {
-        setAllData(data);
+    // axios
+    //   .request(covidOptions)
+    //   .then((response) => response.data)
+    //   .then((data) => {
+    //     setAllData(data);
         
-        const cache = data.map((el) => {
+    //     const cache = data.map((el) => {
           
-          const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
-          return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
-        });
-        cache.unshift(['Country', 'Active cases per 1000 people', 'Total number of active cases']);
+    //       const infectedPerThou = Math.round((el.ActiveCases / el.Population) * 1000) || 0;
+    //       return [countryCodeToName[el.Country] || el.Country, infectedPerThou, el.ActiveCases];
+    //     });
+    //     cache.unshift(['Country', 'Active cases per 1000 people', 'Total number of active cases']);
 
         
+    //     setCovidData(cache);
+    //     setLoading(false);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+
+    //temporary fix
+    var options = {
+      method: 'GET',
+      url: 'https://covid-193.p.rapidapi.com/statistics',
+      headers: {
+        'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+        'x-rapidapi-key': '9fa7052cc4msh1f61e1c37e16f0bp10048ejsn1cd3ea3c1c0a'
+      }
+    };
+
+    axios.request(options)
+      .then((response) => response.data)
+      .then((data) => {
+        setAllData(data.response);
+        const countryInfo = data.response;
+        const cache = [['Country', 'Active cases per 1000 people', 'Total number of active cases']];
+        for(let i = 0; i <countryInfo.length; i++){
+          if(countryInfo[i]['country'].includes('-')){
+            continue;
+          }
+          const infectedPerThou = Math.round((countryInfo[i]['cases']['active'] / countryInfo[i]['population']) * 1000) || 0;
+          cache.push([countryInfo[i]['country'], infectedPerThou, countryInfo[i]['cases']['active']]);
+        }
         setCovidData(cache);
         setLoading(false);
       })
       .catch(function (error) {
         console.error(error);
       });
+      //temporary fix end
+
   }, []);
 
   const openModal = () =>{
@@ -72,14 +105,30 @@ const CovidMap = () => {
             {
               eventName: 'select',
               callback: ({ chartWrapper }) => {
+                // const chart = chartWrapper.getChart();
+                // const selection = chart.getSelection();
+                // if (selection.length === 0) return;
+                // console.log(selection[0].row)
+                // const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                // setIso(iso);
+                // setSelectedCountry(allData[selection[0].row]['Country']);
+                // setCountryData(allData[selection[0].row]);
+                // openModal();
+                
+                //temp fix
                 const chart = chartWrapper.getChart();
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
-                const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                const countryName = covidData[selection[0].row + 1][0];
+                const iso = object[countryName];
                 setIso(iso);
-                setSelectedCountry(allData[selection[0].row]['Country']);
-                setCountryData(allData[selection[0].row]);
+                setSelectedCountry(countryName);
                 openModal();
+                // const iso = allData[selection[0].row]['ThreeLetterSymbol'].toUpperCase();
+                // setIso(iso);
+                // setSelectedCountry(allData[selection[0].row]['Country']);
+                // setCountryData(allData[selection[0].row]);
+                // openModal();
               },
             },
           ]}
@@ -98,7 +147,7 @@ const CovidMap = () => {
         onRequestClose={closeModal}
         style={{content:{background: '#FCF8F3'}}}
       >
-        <ModalContent iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
+        <ModalContent ID={ID} iso={iso} selectedCountry={selectedCountry} countryData={countryData} closeModal={closeModal}/>
        
       </Modal>
 

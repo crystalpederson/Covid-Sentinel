@@ -1,5 +1,5 @@
 import React from 'react';
-import WatchList from './WatchList'
+import WatchList from './WatchList';
 
 const Dashboard = ({ID}) => {
   return (
