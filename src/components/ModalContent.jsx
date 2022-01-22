@@ -4,6 +4,7 @@ import CountryData from './CountryData';
 import VaccineData from './VaccineData';
 import CovidGraph from './CovidGraph';
 import VaccGraph from './VaccGraph';
+import { useEffect } from 'react/cjs/react.development';
 
 const ModalContent = ({iso, selectedCountry, closeModal, countryData, ID}) => {
 
@@ -23,10 +24,10 @@ const ModalContent = ({iso, selectedCountry, closeModal, countryData, ID}) => {
           <FaveCountry ID={ID} selectedCountry={selectedCountry}/>
         </div>
         <div id='country-tables'>
-          {/* <div className='covid-table'>
+          <div className='covid-table'>
             <h2 className='chart-title'>Covid-19 Data</h2>
             <CountryData  countryData={countryData}/>
-          </div> */}
+          </div>
           <div className='vacc-table'>
             <h2 className='chart-title'>Vaccine Data</h2>
             <VaccineData  iso={iso}/>

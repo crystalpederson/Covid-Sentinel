@@ -57,11 +57,14 @@ const CovidMap = ({ID}) => {
       }
     };
 
+
     axios.request(options)
       .then((response) => response.data)
       .then((data) => {
         setAllData(data.response);
         const countryInfo = data.response;
+        const allCountryData = {};
+
         const cache = [['Country', 'Active cases per 1000 people', 'Total number of active cases']];
         for(let i = 0; i <countryInfo.length; i++){
           if(countryInfo[i]['country'].includes('-')){
@@ -69,7 +72,10 @@ const CovidMap = ({ID}) => {
           }
           const infectedPerThou = Math.round((countryInfo[i]['cases']['active'] / countryInfo[i]['population']) * 1000) || 0;
           cache.push([countryInfo[i]['country'], infectedPerThou, countryInfo[i]['cases']['active']]);
+          
+          allCountryData[countryInfo[i]['country']] = countryInfo[i]
         }
+        setAllData(allCountryData);
         setCovidData(cache);
         setLoading(false);
       })
@@ -120,6 +126,7 @@ const CovidMap = ({ID}) => {
                 const selection = chart.getSelection();
                 if (selection.length === 0) return;
                 const countryName = covidData[selection[0].row + 1][0];
+                setCountryData(allData[countryName])
                 const iso = object[countryName];
                 setIso(iso);
                 setSelectedCountry(countryName);
