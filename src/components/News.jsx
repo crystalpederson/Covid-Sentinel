@@ -102,9 +102,7 @@ const News = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
         setState(response.data.news);
-        // console.log('request made?');
       })
       .catch(function (error) {
         console.error(error);

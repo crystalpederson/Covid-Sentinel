@@ -23,7 +23,7 @@ const VaccineData = ({iso}) => {
   vaccinationOptions.params['iso'] = iso;
 
   useEffect(() => {
-    
+    console.log('start')
     axios
       .request(vaccinationOptions)
       .then((response) => response.data)
@@ -39,10 +39,12 @@ const VaccineData = ({iso}) => {
         cache.push(['Type of vaccines', data['vaccines']]);
         setCovidData(cache);
         setLoading(false);
+        console.log('end');
       })
       .catch(function (error) {
         console.error(error);
       });
+
   }, []);
 
   return (
